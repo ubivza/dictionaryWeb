@@ -1,9 +1,9 @@
-create table eng_word(id int primary key generated always as identity, word int(100000) not null unique);
-create table eng_translate(eng_word_id int references eng_word(id), translate_word varchar(50));
+create table eng_word(id int primary key generated always as identity, word int not null unique); --int(100000)
+create table eng_translate(eng_word_id int references eng_word(id) on delete cascade, translate_word varchar(50));
 
 
 create table spanish_word(id int primary key generated always as identity, word varchar(4) not null unique);
-create table spanish_translate(spanish_word_id int references spanish_word(id), translate_word varchar(50));
+create table spanish_translate(spanish_word_id int references spanish_word(id) on delete cascade, translate_word varchar(50));
 
 
 insert into eng_word(word) values(12351);

@@ -34,7 +34,7 @@ public class EnglishDictionaryDAO {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "select word, translate_word from eng_word ew join eng_translate et on ew.id = et.eng_word_id");
+                    "select word, translate_word from eng_word ew left join eng_translate et on ew.id = et.eng_word_id");
             preparedStatement.executeQuery();
 
             ResultSet resultSet = preparedStatement.getResultSet();
