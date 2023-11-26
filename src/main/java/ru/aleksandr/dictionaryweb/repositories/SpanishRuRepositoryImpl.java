@@ -2,7 +2,6 @@ package ru.aleksandr.dictionaryweb.repositories;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.ObjectError;
 import ru.aleksandr.dictionaryweb.models.SpanishRuDictionaryWord;
