@@ -1,53 +1,65 @@
 package ru.aleksandr.dictionaryweb.dao;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-import ru.aleksandr.dictionaryweb.models.EngRuDictWord;
 
-import java.sql.*;
-import java.util.ArrayList;
+import jakarta.transaction.Transactional;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Component;
+import ru.aleksandr.dictionaryweb.entities.EnglishWord;
+import ru.aleksandr.dictionaryweb.repositories.EngRuRepository;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class EnglishDictionaryDAO {
+@Component
+public class EnglishDictionaryDAO implements EngRuRepository {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/dictionary";
-    private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "postgres";
+    private final SessionFactory sessionFactory;
 
-    private static Connection connection;
-
-    static {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public EnglishDictionaryDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
-    public List<EngRuDictWord> index() {
-        List<EngRuDictWord> resultList = new ArrayList<>();
+    @Override
+    @Transactional
+    public List<EnglishWord> getAll() {
+        Session session = sessionFactory.openSession();
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "select word, translate_word from eng_word ew left join eng_translate et on ew.id = et.eng_word_id");
-            preparedStatement.executeQuery();
+        List<EnglishWord> englishWordList = session.createQuery("from EnglishWord").getResultList();
+        Map<String, String> resultMap = new HashMap<>();
 
-            ResultSet resultSet = preparedStatement.getResultSet();
-            while(resultSet.next()) {
-                EngRuDictWord word = new EngRuDictWord();
-                word.setEnglishWord(resultSet.getString("word"));
-                word.setRuWord(resultSet.getString("translate_word"));
-                resultList.add(word);
+        /* Перенести в сервис слой
+        for (EnglishWord ew : englishWordList) {
+            StringBuilder stringBuilder = new StringBuilder((CharSequence) ew.getEnglishTranslateWords().get(0).getTranslation());
+            if (ew.getEnglishTranslateWords().size() > 1) {
+                for (EnglishTranslateWord et : ew.getEnglishTranslateWords()) {
+                    stringBuilder.append(", ");
+                    stringBuilder.append(et);
+                }
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+            resultMap.put(String.valueOf(ew.getWord()), stringBuilder.toString());
+        }*/
+        return englishWordList;
+    }
 
-        return resultList;
+    @Override
+    public EnglishWord getByKey(String s) {
+        return null;
+    }
+
+    @Override
+    public boolean save(EnglishWord ew) {
+        return false;
+    }
+
+    @Override
+    public boolean update(EnglishWord ew) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteByKey(String s) {
+        return false;
     }
 }
