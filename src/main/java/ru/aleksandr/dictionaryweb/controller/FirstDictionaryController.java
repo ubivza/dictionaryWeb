@@ -1,10 +1,8 @@
-package ru.aleksandr.dictionaryweb.controllers;
+package ru.aleksandr.dictionaryweb.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.aleksandr.dictionaryweb.dao.EnglishDictionaryDAO;
 
 @Controller
 @RequestMapping("eng-ru-dict")

@@ -1,4 +1,4 @@
-package ru.aleksandr.dictionaryweb.controllers;
+package ru.aleksandr.dictionaryweb.controller;
 
 import ch.qos.logback.core.model.Model;
 import org.springframework.stereotype.Controller;

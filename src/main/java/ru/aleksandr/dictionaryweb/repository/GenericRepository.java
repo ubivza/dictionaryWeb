@@ -1,4 +1,4 @@
-package ru.aleksandr.dictionaryweb.repositories;
+package ru.aleksandr.dictionaryweb.repository;
 
 import java.util.List;
 

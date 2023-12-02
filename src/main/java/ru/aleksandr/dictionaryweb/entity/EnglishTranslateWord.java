@@ -1,18 +1,16 @@
-package ru.aleksandr.dictionaryweb.entities;
+package ru.aleksandr.dictionaryweb.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
 @Table(name = "eng_translate")
 @Data
-@AllArgsConstructor
 public class EnglishTranslateWord {
     @Id
     @Column(name = "row_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "eng_word_id", referencedColumnName = "id")
     private EnglishWord englishWord;
@@ -20,4 +18,9 @@ public class EnglishTranslateWord {
     private String translation;
 
     public EnglishTranslateWord() {}
+
+    public EnglishTranslateWord(EnglishWord englishWord, String translation) {
+        this.englishWord = englishWord;
+        this.translation = translation;
+    }
 }

@@ -1,8 +1,8 @@
 package ru.aleksandr.dictionaryweb.dao;
 
 import org.springframework.stereotype.Component;
-import ru.aleksandr.dictionaryweb.entities.SpanishWord;
-import ru.aleksandr.dictionaryweb.repositories.SpanishRuRepository;
+import ru.aleksandr.dictionaryweb.entity.SpanishWord;
+import ru.aleksandr.dictionaryweb.repository.SpanishRuRepository;
 
 import java.util.List;
 
