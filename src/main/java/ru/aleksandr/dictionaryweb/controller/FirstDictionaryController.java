@@ -3,12 +3,21 @@ package ru.aleksandr.dictionaryweb.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 
 @Controller
 @RequestMapping("eng-ru-dict")
 public class FirstDictionaryController {
+
+    private final EnglishDictionaryService englishDictionaryService;
+
+    public FirstDictionaryController(EnglishDictionaryService englishDictionaryService) {
+        this.englishDictionaryService = englishDictionaryService;
+    }
+
     @GetMapping
     public String showMainDictionaryPage(Model model) {
+        model.addAttribute("allValuesFromDictionary", englishDictionaryService.showAll());
         return "firstDict/engRuMain";
     }
 

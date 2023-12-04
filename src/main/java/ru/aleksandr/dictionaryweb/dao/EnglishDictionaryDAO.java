@@ -2,11 +2,12 @@ package ru.aleksandr.dictionaryweb.dao;
 
 
 
-import jakarta.transaction.Transactional;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Query;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.repository.EngRuRepository;
 
@@ -16,80 +17,53 @@ import java.util.List;
 @Slf4j
 public class EnglishDictionaryDAO implements EngRuRepository {
 
-    private final SessionFactory sessionFactory;
+    private final EntityManagerFactory entityManagerFactory;
 
-    public EnglishDictionaryDAO(SessionFactory sessionFactory) { //почему нет такого бина?
-        this.sessionFactory = sessionFactory;
+    public EnglishDictionaryDAO(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
     }
 
     @Override
     @Transactional
     public List<EnglishWord> getAll() {
-        Session session = sessionFactory.openSession();
-        try {
-            List<EnglishWord> englishWordList = session.createQuery("from EnglishWord").getResultList();
-            return englishWordList;
-        } catch (Exception e) {
-            log.warn(e + " catched in getAll");
-            session.close();
-        }
-        //подумать чем заменить налл, может кастомный класс ошибку отнаследованную от энтити класса инглишВорд и в нее
-        //писать ошибку??
-        return null;
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        List<EnglishWord> englishWordList = entityManager.createQuery("from EnglishWord", EnglishWord.class)
+                    .getResultList();
+        return englishWordList;
     }
 
     @Override
     @Transactional
     public EnglishWord getByKey(String s) {
-        Session session = sessionFactory.openSession();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        try {
-            //как тут получить именно по полю(столбцу) word, а не по айди?
-            EnglishWord englishWord = session.get(EnglishWord.class, s);
-            return englishWord;
-        } catch (Exception e) {
-            log.warn(e + " catched while getting by key " + s);
-            session.close();
-            return null;
-        }
+        Query query = entityManager.createQuery("from EnglishWord where word=:wordToFind");
+        query.setParameter("wordToFind", s);
+
+        EnglishWord englishWord = (EnglishWord) query.getSingleResult();
+        return englishWord;
     }
 
     @Override
     @Transactional
     public boolean save(EnglishWord ew) {
-        Session session = sessionFactory.openSession();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        try {
-            /*
-            for (EnglishTranslateWord et : ew.getEnglishTranslateWords()) {
-                session.persist(et);
-                Можно ли не делать этого тут, потому что у меня каскейд тайп в энтити стоит олл?
-            }*/
-            session.persist(ew);
-            return true;
-        } catch (Exception e ) {
-            log.warn(e + " catched while trying to save entity " + ew);
-            session.close();
-            return false;
-        }
+        entityManager.persist(ew);
+        return true;
     }
 
     @Override
     @Transactional
     public boolean update(EnglishWord ew) {
-        Session session = sessionFactory.openSession();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        try {
-            EnglishWord englishWord = session.get(EnglishWord.class, ew.getId());
-            englishWord.setWord(ew.getWord());
-            englishWord.setEnglishTranslateWords(ew.getEnglishTranslateWords());
+        EnglishWord englishWord = entityManager.find(EnglishWord.class, ew.getId());
+        englishWord.setWord(ew.getWord());
 
-            return true;
-        } catch (Exception e) {
-            log.warn(e + " catched while trying to update entity " + ew);
-            session.close();
-            return false;
-        }
+        englishWord.setEnglishTranslateWords(ew.getEnglishTranslateWords());
+        return true;
     }
 
     @Override

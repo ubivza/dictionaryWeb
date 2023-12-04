@@ -2,6 +2,7 @@ package ru.aleksandr.dictionaryweb.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -14,7 +15,9 @@ public class EnglishWord {
     private Long id;
     @Column(name = "word")
     private Integer word;
-    @OneToMany(mappedBy = "englishWord", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "englishWord", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ToString.Exclude
     private List<EnglishTranslateWord> englishTranslateWords;
 
     public EnglishWord() {}

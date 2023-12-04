@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Англ-Ру</title>
@@ -8,14 +8,16 @@
 <h1>Англо-Русский словарь</h1>
 <h3><a href="/">Вернуться в главное меню</a></h3>
 <h3>Добавить новое слово</h3>
-    <form th:method="POST" th:action="/eng-ru-dict">
-
-
-    </form>
 <br>
 <h3>Поиск по ключу (реализовать)</h3>
 <br>
 <h3>Поиск по значению (реализовать)</h3>
-Список слов...
+<br>
+<div th:each="word : ${allValuesFromDictionary}">
+    <h4>
+        <a th:href="@{/eng-ru-dict/{id}(id=${word.})"
+           th:text="${word}">VALUE</a>
+    </h4>
+</div>
 </body>
 </html>
