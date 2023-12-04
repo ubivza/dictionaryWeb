@@ -3,6 +3,7 @@ package ru.aleksandr.dictionaryweb.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 
 @Controller
@@ -22,9 +23,15 @@ public class FirstDictionaryController {
     }
 
     @GetMapping("/{id}")
-    public String showWord(@PathVariable("id") int id,
+    public String showWord(@PathVariable("id") Long id,
                            Model model) {
-        return "firstDict/engRuMain";
+        model.addAttribute("valueById", englishDictionaryService.showById(id));
+        return "firstDict/showById";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editWord(@PathVariable("id") Long id) {
+        return "firstDict/edit";
     }
 
     @PostMapping

@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>Англо-Русский словарь</h1>
+<hr/>
 <h3><a href="/">Вернуться в главное меню</a></h3>
 <h3>Добавить новое слово</h3>
 <br>
@@ -15,8 +16,15 @@
 <br>
 <div th:each="word : ${allValuesFromDictionary}">
     <h4>
-        <a th:href="@{/eng-ru-dict/{id}(id=${word.})"
-           th:text="${word}">VALUE</a>
+        <a th:href="@{/eng-ru-dict/{id}(id=${word.getId()})}"
+           th:switch="${word.getEnglishTranslateWords().size()}">
+           <span th:case="'0'" th:text="${word.getWord() + ' - перевода пока нет'}"></span>
+            <span th:case="'1'" th:text="${word.getWord() + ' - ' + word.getEnglishTranslateWords().get(0).getTranslation()}">
+            </span>
+            <!-- поработать над дефолт методом-->
+            <span th:case="*" th:each="translate : ${word.getEnglishTranslateWords()}"
+                  th:text="${word.getWord() + ' - ' + translate.getTranslation()}"></span>
+        </a>
     </h4>
 </div>
 </body>

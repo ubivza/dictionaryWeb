@@ -35,13 +35,11 @@ public class EnglishDictionaryDAO implements EngRuRepository {
 
     @Override
     @Transactional
-    public EnglishWord getByKey(String s) {
+    public EnglishWord getByKey(Long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Query query = entityManager.createQuery("from EnglishWord where word=:wordToFind");
-        query.setParameter("wordToFind", s);
+        EnglishWord englishWord = entityManager.find(EnglishWord.class, id);
 
-        EnglishWord englishWord = (EnglishWord) query.getSingleResult();
         return englishWord;
     }
 
@@ -59,16 +57,13 @@ public class EnglishDictionaryDAO implements EngRuRepository {
     public boolean update(EnglishWord ew) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        EnglishWord englishWord = entityManager.find(EnglishWord.class, ew.getId());
-        englishWord.setWord(ew.getWord());
-
-        englishWord.setEnglishTranslateWords(ew.getEnglishTranslateWords());
+        entityManager.merge(ew);
         return true;
     }
 
     @Override
     @Transactional
-    public boolean deleteByKey(String s) {
+    public boolean deleteByKey(Long id) {
         return false;
     }
 }

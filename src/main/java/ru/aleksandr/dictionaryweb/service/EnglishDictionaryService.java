@@ -18,7 +18,7 @@ public class EnglishDictionaryService {
         this.englishDictionaryDAO = englishDictionaryDAO;
     }
 
-    public List<String> showAll() {
+    public List<String> showAllDeprecated() {
         List<String> result = new ArrayList<>();
         List<EnglishWord> arr = englishDictionaryDAO.getAll();
 
@@ -40,13 +40,13 @@ public class EnglishDictionaryService {
         return result;
     }
 
-    public List<EnglishWord> showAll1() {
+    public List<EnglishWord> showAll() {
         return englishDictionaryDAO.getAll();
     }
 
-    public EnglishWord showByWord(String word) {
-        EnglishWord ew = englishDictionaryDAO.getByKey(word);
-        return ew;
+    public EnglishWord showById(Long id) {
+        EnglishWord englishWord = englishDictionaryDAO.getByKey(id);
+        return englishWord;
     }
 
     public void save(String word) {
@@ -63,17 +63,7 @@ public class EnglishDictionaryService {
         englishDictionaryDAO.save(englishWord);
     }
 
-    public void update(String word) {
-        String[] arr = word.split(" ");
-
-        EnglishWord englishWord = new EnglishWord();
-        EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
-
-        englishTranslateWord.setEnglishWord(englishWord);
-        englishTranslateWord.setTranslation(arr[1]);
-
-        englishWord.setWord(Integer.valueOf(arr[0]));
-        englishWord.setEnglishTranslateWords(Collections.singletonList(englishTranslateWord));
+    public void update(Long id, EnglishWord englishWord) {
         englishDictionaryDAO.update(englishWord);
     }
 }
