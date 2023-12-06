@@ -11,6 +11,6 @@ public class SecondDictionaryController {
 
     @GetMapping
     public String showMainDictionaryPage(Model model) {
-        return "secondDict/spainRuMain";
+        return "main";
     }
 }

@@ -4,12 +4,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 
 import java.util.Arrays;
 import java.util.Enumeration;
 
 @SpringBootApplication
+@EnableTransactionManagement
 public class DictionaryWebApplication implements CommandLineRunner {
 
     private final EnglishDictionaryService englishDictionaryService;

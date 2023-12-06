@@ -1,17 +1,39 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Меню</title>
 </head>
 <body>
-<h1>Главное меню. Выберите нужный словарь ниже:</h1>
-<h2><a href="/eng-ru-dict">Перейти в англо-русский словарь</a></h2>
+<h1>Главное меню.
+    Выберите нужный словарь ниже:</h1>
+<hr/>
+<h2>Англо-русский словарь :</h2>
+<select name="select">
+    <option th:each="word : ${allValuesFromDictionary}" th:value="${word}" th:text="${word}">
+    </option>
+</select>
+<!-- Вставить ссылку на соотвествующую выбранному слову сверху едит страницу-->
+<button>Редактировать выбранное слово</button>
+<button>Удалить выбранное слово</button>
 <br>
-<h2><a href="/spain-ru-dict">Перейти в испано-русский словарь</a></h2>
+<button>Добавить новое слово</button>
+<hr/>
+<h2>Испано-русский словарь :</h2>
+<button>Редактировать выбранное слово</button>
+<button>Удалить выбранное слово</button>
 <br>
-<h3>Поиск по ключу во всех словарях (реализовать)</h3>
-<br>
-<h3>Поиск по значению во всех словарях </h3> <input type="text" name="keyGlobalSearch" onkeyup="">
+<button>Добавить новое слово</button>
+<hr/>
+<h3>Введите слово для поиска :</h3>
+<form method="post" th:action="">
+    <input type="radio" name="dictionary" value="allDicts">Все словари<br>
+    <input type="radio" name="dictionary" value="engRuDict">Англо-русский словарь<br>
+    <input type="radio" name="dictionary" value="spainRuDict">Испано-русский словарь<br>
+    <h3>Поиск по ключу :</h3> <input type="text" name="keyWord">
+    <br>
+    <h3>Поиск по значению :</h3> <input type="text" name="valueWord"><br>
+    <input type="submit" value="Подтвердить выбор">
+</form>
 </body>
 </html>

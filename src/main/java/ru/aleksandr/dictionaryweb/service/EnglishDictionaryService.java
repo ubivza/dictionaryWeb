@@ -18,7 +18,8 @@ public class EnglishDictionaryService {
         this.englishDictionaryDAO = englishDictionaryDAO;
     }
 
-    public List<String> showAllDeprecated() {
+    @Deprecated
+    public List<String> showAllLikeStrings() {
         List<String> result = new ArrayList<>();
         List<EnglishWord> arr = englishDictionaryDAO.getAll();
 
@@ -49,7 +50,8 @@ public class EnglishDictionaryService {
         return englishWord;
     }
 
-    public void save(String word) {
+    @Deprecated
+    public void saveString(String word) {
         String[] arr = word.split(" ");
         EnglishWord englishWord = new EnglishWord();
         EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
