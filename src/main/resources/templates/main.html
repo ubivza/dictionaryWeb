@@ -17,7 +17,9 @@
 <button>Редактировать выбранное слово</button>
 <button>Удалить выбранное слово</button>
 <br>
-<button>Добавить новое слово</button>
+<form action="http://localhost:8080/eng-ru-dict/new">
+    <button type="submit">Добавить новое слово</button>
+</form>
 <hr/>
 <h2>Испано-русский словарь :</h2>
 <button>Редактировать выбранное слово</button>
@@ -26,7 +28,7 @@
 <button>Добавить новое слово</button>
 <hr/>
 <h3>Введите слово для поиска :</h3>
-<form method="post" th:action="">
+<form method="post" action="http://localhost:8080">
     <input type="radio" name="dictionary" value="allDicts">Все словари<br>
     <input type="radio" name="dictionary" value="engRuDict">Англо-русский словарь<br>
     <input type="radio" name="dictionary" value="spainRuDict">Испано-русский словарь<br>
@@ -35,5 +37,6 @@
     <h3>Поиск по значению :</h3> <input type="text" name="valueWord"><br>
     <input type="submit" value="Подтвердить выбор">
 </form>
+<p th:text="${message}"></p>
 </body>
 </html>

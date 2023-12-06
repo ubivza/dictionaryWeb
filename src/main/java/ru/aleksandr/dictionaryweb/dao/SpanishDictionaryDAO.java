@@ -15,6 +15,6 @@ public class SpanishDictionaryDAO {
     }
 
     public List<SpanishWord> find() {
-        return spanishRuRepository.findAll();
+        return null;
     }
 }

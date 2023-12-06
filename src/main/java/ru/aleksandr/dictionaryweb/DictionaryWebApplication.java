@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 
 import java.util.Arrays;
-import java.util.Enumeration;
 
 @SpringBootApplication
 @EnableTransactionManagement

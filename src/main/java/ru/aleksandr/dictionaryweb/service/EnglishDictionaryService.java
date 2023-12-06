@@ -1,6 +1,7 @@
 package ru.aleksandr.dictionaryweb.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.aleksandr.dictionaryweb.dao.EnglishDictionaryDAO;
 import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
@@ -45,27 +46,29 @@ public class EnglishDictionaryService {
         return englishDictionaryDAO.getAll();
     }
 
-    public EnglishWord showById(Long id) {
-        EnglishWord englishWord = englishDictionaryDAO.getByKey(id);
-        return englishWord;
-    }
-
-    @Deprecated
     public void saveString(String word) {
         String[] arr = word.split(" ");
+
         EnglishWord englishWord = new EnglishWord();
-        EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
-
-        englishTranslateWord.setTranslation(arr[1]);
-        englishTranslateWord.setEnglishWord(englishWord);
-
         englishWord.setWord(Integer.valueOf(arr[0]));
-        englishWord.setEnglishTranslateWords(Collections.singletonList(englishTranslateWord));
+
+        if (arr.length >= 2) {
+            EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
+
+            englishTranslateWord.setTranslation(arr[1]);
+            englishTranslateWord.setEnglishWord(englishWord);
+            englishWord.setEnglishTranslateWords(Collections.singletonList(englishTranslateWord));
+        }
 
         englishDictionaryDAO.save(englishWord);
     }
 
-    public void update(Long id, EnglishWord englishWord) {
-        englishDictionaryDAO.update(englishWord);
+    public EnglishWord showByKey(String key) {
+        EnglishWord result = englishDictionaryDAO.getByKey(key);
+        return result;
+    }
+
+    public EnglishWord showByValue(String value) {
+        return englishDictionaryDAO.getByValue(value);
     }
 }
