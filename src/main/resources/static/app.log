@@ -1,0 +1,329 @@
+2023-12-07T03:53:19.702+03:00  INFO 13268 --- [main] r.a.d.DictionaryWebApplication           : Starting DictionaryWebApplication using Java 17.0.8 with PID 13268 (/Users/ubivza/IdeaProjects/dictionaryWeb/build/classes/java/main started by ubivza in /Users/ubivza/IdeaProjects/dictionaryWeb)
+2023-12-07T03:53:19.703+03:00  INFO 13268 --- [main] r.a.d.DictionaryWebApplication           : No active profile set, falling back to 1 default profile: "default"
+2023-12-07T03:53:19.964+03:00  INFO 13268 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-07T03:53:19.984+03:00  INFO 13268 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 1 JPA repository interfaces.
+2023-12-07T03:53:20.210+03:00  INFO 13268 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-12-07T03:53:20.216+03:00  INFO 13268 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-07T03:53:20.216+03:00  INFO 13268 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-07T03:53:20.262+03:00  INFO 13268 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-07T03:53:20.262+03:00  INFO 13268 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 541 ms
+2023-12-07T03:53:20.329+03:00  INFO 13268 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-07T03:53:20.442+03:00  INFO 13268 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@511f5b1d
+2023-12-07T03:53:20.443+03:00  INFO 13268 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-07T03:53:20.465+03:00  INFO 13268 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-07T03:53:20.493+03:00  INFO 13268 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.13.Final
+2023-12-07T03:53:20.495+03:00  INFO 13268 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-12-07T03:53:20.616+03:00  INFO 13268 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-07T03:53:21.085+03:00  INFO 13268 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-07T03:53:21.086+03:00  INFO 13268 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-07T03:53:21.200+03:00  WARN 13268 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-07T03:53:21.354+03:00  INFO 13268 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-12-07T03:53:21.360+03:00  INFO 13268 --- [main] r.a.d.DictionaryWebApplication           : Started DictionaryWebApplication in 1.819 seconds (process running for 7.1)
+2023-12-07T03:53:29.233+03:00  INFO 13268 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-07T03:53:29.234+03:00  INFO 13268 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-07T03:53:29.236+03:00  INFO 13268 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-12-07T03:53:47.208+03:00  WARN 13268 --- [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'dictionary' for method parameter type String is not present]
+2023-12-07T03:54:10.984+03:00  INFO 13268 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-07T03:54:10.987+03:00  INFO 13268 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-07T03:54:10.990+03:00  INFO 13268 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-07T03:54:17.676+03:00  INFO 13347 --- [main] r.a.d.DictionaryWebApplication           : Starting DictionaryWebApplication using Java 17.0.8 with PID 13347 (/Users/ubivza/IdeaProjects/dictionaryWeb/build/classes/java/main started by ubivza in /Users/ubivza/IdeaProjects/dictionaryWeb)
+2023-12-07T03:54:17.677+03:00  INFO 13347 --- [main] r.a.d.DictionaryWebApplication           : No active profile set, falling back to 1 default profile: "default"
+2023-12-07T03:54:17.938+03:00  INFO 13347 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-07T03:54:17.959+03:00  INFO 13347 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 1 JPA repository interfaces.
+2023-12-07T03:54:18.154+03:00  INFO 13347 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-12-07T03:54:18.158+03:00  INFO 13347 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-07T03:54:18.158+03:00  INFO 13347 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-07T03:54:18.192+03:00  INFO 13347 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-07T03:54:18.192+03:00  INFO 13347 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 492 ms
+2023-12-07T03:54:18.251+03:00  INFO 13347 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-07T03:54:18.347+03:00  INFO 13347 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@511f5b1d
+2023-12-07T03:54:18.348+03:00  INFO 13347 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-07T03:54:18.367+03:00  INFO 13347 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-07T03:54:18.393+03:00  INFO 13347 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.13.Final
+2023-12-07T03:54:18.395+03:00  INFO 13347 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-12-07T03:54:18.506+03:00  INFO 13347 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-07T03:54:18.923+03:00  INFO 13347 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-07T03:54:18.924+03:00  INFO 13347 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-07T03:54:19.030+03:00  WARN 13347 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-07T03:54:19.178+03:00  INFO 13347 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-12-07T03:54:19.183+03:00  INFO 13347 --- [main] r.a.d.DictionaryWebApplication           : Started DictionaryWebApplication in 1.683 seconds (process running for 6.977)
+2023-12-07T03:54:19.320+03:00  INFO 13347 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-07T03:54:19.320+03:00  INFO 13347 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-07T03:54:19.321+03:00  INFO 13347 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-12-07T03:54:24.003+03:00 ERROR 13347 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "dictionary" is null] with root cause
+
+java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "dictionary" is null
+	at ru.aleksandr.dictionaryweb.controller.MainController.getSelectedWord(MainController.java:66) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.15.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.15.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-12-07T03:56:11.712+03:00  INFO 13347 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-07T03:56:11.718+03:00  INFO 13347 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-07T03:56:11.721+03:00  INFO 13347 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-07T03:56:18.232+03:00  INFO 13493 --- [main] r.a.d.DictionaryWebApplication           : Starting DictionaryWebApplication using Java 17.0.8 with PID 13493 (/Users/ubivza/IdeaProjects/dictionaryWeb/build/classes/java/main started by ubivza in /Users/ubivza/IdeaProjects/dictionaryWeb)
+2023-12-07T03:56:18.233+03:00  INFO 13493 --- [main] r.a.d.DictionaryWebApplication           : No active profile set, falling back to 1 default profile: "default"
+2023-12-07T03:56:18.481+03:00  INFO 13493 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-07T03:56:18.502+03:00  INFO 13493 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 1 JPA repository interfaces.
+2023-12-07T03:56:18.707+03:00  INFO 13493 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-12-07T03:56:18.712+03:00  INFO 13493 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-07T03:56:18.712+03:00  INFO 13493 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-07T03:56:18.746+03:00  INFO 13493 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-07T03:56:18.746+03:00  INFO 13493 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 495 ms
+2023-12-07T03:56:18.797+03:00  INFO 13493 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-07T03:56:18.865+03:00  INFO 13493 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@511f5b1d
+2023-12-07T03:56:18.866+03:00  INFO 13493 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-07T03:56:18.884+03:00  INFO 13493 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-07T03:56:18.907+03:00  INFO 13493 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.13.Final
+2023-12-07T03:56:18.908+03:00  INFO 13493 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-12-07T03:56:19.024+03:00  INFO 13493 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-07T03:56:19.428+03:00  INFO 13493 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-07T03:56:19.429+03:00  INFO 13493 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-07T03:56:19.536+03:00  WARN 13493 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-07T03:56:19.682+03:00  INFO 13493 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-12-07T03:56:19.686+03:00  INFO 13493 --- [main] r.a.d.DictionaryWebApplication           : Started DictionaryWebApplication in 1.604 seconds (process running for 6.98)
+2023-12-07T03:56:26.286+03:00  INFO 13493 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-07T03:56:26.286+03:00  INFO 13493 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-07T03:56:26.288+03:00  INFO 13493 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-12-07T04:01:02.559+03:00  INFO 13493 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-07T04:01:02.563+03:00  INFO 13493 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-07T04:01:02.565+03:00  INFO 13493 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-07T04:03:12.118+03:00  INFO 13631 --- [main] r.a.d.DictionaryWebApplication           : Starting DictionaryWebApplication using Java 17.0.8 with PID 13631 (/Users/ubivza/IdeaProjects/dictionaryWeb/build/classes/java/main started by ubivza in /Users/ubivza/IdeaProjects/dictionaryWeb)
+2023-12-07T04:03:12.119+03:00  INFO 13631 --- [main] r.a.d.DictionaryWebApplication           : No active profile set, falling back to 1 default profile: "default"
+2023-12-07T04:03:12.389+03:00  INFO 13631 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-07T04:03:12.416+03:00  INFO 13631 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 1 JPA repository interfaces.
+2023-12-07T04:03:12.624+03:00  INFO 13631 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-12-07T04:03:12.629+03:00  INFO 13631 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-07T04:03:12.629+03:00  INFO 13631 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-07T04:03:12.665+03:00  INFO 13631 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-07T04:03:12.665+03:00  INFO 13631 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 525 ms
+2023-12-07T04:03:12.720+03:00  INFO 13631 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-07T04:03:12.810+03:00  INFO 13631 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@31f295b6
+2023-12-07T04:03:12.811+03:00  INFO 13631 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-07T04:03:12.829+03:00  INFO 13631 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-07T04:03:12.853+03:00  INFO 13631 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.13.Final
+2023-12-07T04:03:12.854+03:00  INFO 13631 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-12-07T04:03:12.969+03:00  INFO 13631 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-07T04:03:13.374+03:00  INFO 13631 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-07T04:03:13.375+03:00  INFO 13631 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-07T04:03:13.487+03:00  WARN 13631 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-07T04:03:13.635+03:00  INFO 13631 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-12-07T04:03:13.640+03:00  INFO 13631 --- [main] r.a.d.DictionaryWebApplication           : Started DictionaryWebApplication in 1.674 seconds (process running for 6.958)
+2023-12-07T04:03:14.747+03:00  INFO 13631 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-07T04:03:14.748+03:00  INFO 13631 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-07T04:03:14.748+03:00  INFO 13631 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-12-07T04:03:19.618+03:00 ERROR 13631 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalStateException: An Errors/BindingResult argument is expected to be declared immediately after the model attribute, the @RequestBody or the @RequestPart arguments to which they apply: public java.lang.String ru.aleksandr.dictionaryweb.controller.FirstDictionaryController.newWord(java.lang.String,org.springframework.validation.BindingResult,java.lang.String,org.springframework.ui.Model)] with root cause
+
+java.lang.IllegalStateException: An Errors/BindingResult argument is expected to be declared immediately after the model attribute, the @RequestBody or the @RequestPart arguments to which they apply: public java.lang.String ru.aleksandr.dictionaryweb.controller.FirstDictionaryController.newWord(java.lang.String,org.springframework.validation.BindingResult,java.lang.String,org.springframework.ui.Model)
+	at org.springframework.web.method.annotation.ErrorsMethodArgumentResolver.resolveArgument(ErrorsMethodArgumentResolver.java:69) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.15.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.15.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-12-07T04:05:29.446+03:00  INFO 13631 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-07T04:05:29.449+03:00  INFO 13631 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-07T04:05:29.451+03:00  INFO 13631 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-12-07T04:05:35.828+03:00  INFO 13708 --- [main] r.a.d.DictionaryWebApplication           : Starting DictionaryWebApplication using Java 17.0.8 with PID 13708 (/Users/ubivza/IdeaProjects/dictionaryWeb/build/classes/java/main started by ubivza in /Users/ubivza/IdeaProjects/dictionaryWeb)
+2023-12-07T04:05:35.829+03:00  INFO 13708 --- [main] r.a.d.DictionaryWebApplication           : No active profile set, falling back to 1 default profile: "default"
+2023-12-07T04:05:36.098+03:00  INFO 13708 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-07T04:05:36.119+03:00  INFO 13708 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 1 JPA repository interfaces.
+2023-12-07T04:05:36.345+03:00  INFO 13708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-12-07T04:05:36.349+03:00  INFO 13708 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-12-07T04:05:36.349+03:00  INFO 13708 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-07T04:05:36.383+03:00  INFO 13708 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-12-07T04:05:36.383+03:00  INFO 13708 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 537 ms
+2023-12-07T04:05:36.436+03:00  INFO 13708 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-12-07T04:05:36.506+03:00  INFO 13708 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@511f5b1d
+2023-12-07T04:05:36.506+03:00  INFO 13708 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-12-07T04:05:36.523+03:00  INFO 13708 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-07T04:05:36.548+03:00  INFO 13708 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.13.Final
+2023-12-07T04:05:36.550+03:00  INFO 13708 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-12-07T04:05:36.667+03:00  INFO 13708 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-07T04:05:37.084+03:00  INFO 13708 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-07T04:05:37.085+03:00  INFO 13708 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-07T04:05:37.196+03:00  WARN 13708 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-07T04:05:37.346+03:00  INFO 13708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-12-07T04:05:37.351+03:00  INFO 13708 --- [main] r.a.d.DictionaryWebApplication           : Started DictionaryWebApplication in 1.666 seconds (process running for 6.936)
+2023-12-07T04:05:40.598+03:00  INFO 13708 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-12-07T04:05:40.599+03:00  INFO 13708 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-12-07T04:05:40.600+03:00  INFO 13708 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-12-07T04:05:46.156+03:00 ERROR 13708 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: jakarta.persistence.NoResultException: No result found for query [from EnglishWord where word=:key]] with root cause
+
+jakarta.persistence.NoResultException: No result found for query [from EnglishWord where word=:key]
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:476) ~[hibernate-core-6.2.13.Final.jar:6.2.13.Final]
+	at ru.aleksandr.dictionaryweb.dao.EnglishDictionaryDAO.getByKey(EnglishDictionaryDAO.java:75) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.13.jar:6.0.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.13.jar:6.0.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.13.jar:6.0.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:751) ~[spring-aop-6.0.13.jar:6.0.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.13.jar:6.0.13]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.13.jar:6.0.13]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.13.jar:6.0.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.13.jar:6.0.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:751) ~[spring-aop-6.0.13.jar:6.0.13]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:703) ~[spring-aop-6.0.13.jar:6.0.13]
+	at ru.aleksandr.dictionaryweb.dao.EnglishDictionaryDAO$$SpringCGLIB$$0.getByKey(<generated>) ~[main/:na]
+	at ru.aleksandr.dictionaryweb.service.EnglishDictionaryService.showByKey(EnglishDictionaryService.java:67) ~[main/:na]
+	at ru.aleksandr.dictionaryweb.controller.MainController.searchInEngRuDict(MainController.java:108) ~[main/:na]
+	at ru.aleksandr.dictionaryweb.controller.MainController.getSelectedWord(MainController.java:70) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.15.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.13.jar:6.0.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.15.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.13.jar:6.0.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.15.jar:10.1.15]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-12-07T04:06:24.005+03:00  INFO 13708 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-07T04:06:24.007+03:00  INFO 13708 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-07T04:06:24.010+03:00  INFO 13708 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

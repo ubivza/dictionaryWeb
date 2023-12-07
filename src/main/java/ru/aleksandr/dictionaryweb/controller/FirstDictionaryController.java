@@ -1,10 +1,10 @@
 package ru.aleksandr.dictionaryweb.controller;
 
-import org.springframework.stereotype.Component;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 
 @Controller
@@ -28,7 +28,9 @@ public class FirstDictionaryController {
     }
 
     @PostMapping("/new")
-    public String newWord(@RequestParam(name = "newKeyWord") String key,
+    public String newWord(@RequestParam(name = "newKeyWord")
+                              @Pattern(regexp = "[0-9]{5}", message = "Слово должно быть 5 цифровых символов в длину")
+                              @NotBlank(message = "Невозможно создать запись в словаре без иностранного слова") String key,
                           @RequestParam(name = "newValueWord", required = false) String value,
                           Model model) {
         englishDictionaryService.saveString(key + " " + value);

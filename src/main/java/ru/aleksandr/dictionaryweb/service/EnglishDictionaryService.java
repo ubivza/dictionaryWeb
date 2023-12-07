@@ -19,29 +19,6 @@ public class EnglishDictionaryService {
         this.englishDictionaryDAO = englishDictionaryDAO;
     }
 
-    @Deprecated
-    public List<String> showAllLikeStrings() {
-        List<String> result = new ArrayList<>();
-        List<EnglishWord> arr = englishDictionaryDAO.getAll();
-
-        for (EnglishWord ew : arr) {
-            StringBuffer translations = new StringBuffer();
-
-            if (ew.getEnglishTranslateWords().isEmpty()) {
-                translations.append("there is no translation yet");
-            } else {
-
-                translations.append(ew.getEnglishTranslateWords().get(0).getTranslation());
-                for (int i = 1; i < ew.getEnglishTranslateWords().size(); i++) {
-                    translations.append(", ");
-                    translations.append(ew.getEnglishTranslateWords().get(i).getTranslation());
-                }
-            }
-            result.add(ew.getWord() + " - " + translations);
-        }
-        return result;
-    }
-
     public List<EnglishWord> showAll() {
         return englishDictionaryDAO.getAll();
     }

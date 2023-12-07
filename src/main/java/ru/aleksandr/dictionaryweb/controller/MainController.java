@@ -21,6 +21,8 @@ public class MainController {
 
     @GetMapping
     public String showMainMenu(Model model) {
+        //этого можно не делать, но у меня не получилось это отдать на обработку
+        // таймлифу из-за нехватки опыта работы с ним
         List<String> valuesToShow = new ArrayList<>();
         for (EnglishWord ew : englishDictionaryService.showAll()) {
             StringBuffer translations = new StringBuffer();
@@ -63,8 +65,15 @@ public class MainController {
             valuesToShow.add(ew.getWord() + " - " + translations);
         }
         model.addAttribute("allValuesFromDictionary", valuesToShow);
-        if (dictionary.equals("engRuDict")) {
+        if (dictionary == null) {
+            model.addAttribute("message", "Выберите словарь из списка сверху " +
+                    "и введите значение по которому будет вестись поиск");
+        } else if (dictionary.equals("engRuDict")) {
             searchInEngRuDict(keyWord, valueWord, model);
+        } else if (dictionary.equals("spainRuDict")) {
+            searchInSpainRuDict(keyWord, valueWord, model);
+        } else {
+            searchInBothDicts(keyWord, valueWord, model);
         }
         return "main";
     }
@@ -96,7 +105,6 @@ public class MainController {
 
 
     private void searchInEngRuDict(String key, String value, Model model) {
-
         if (key != null && !key.isEmpty()) {
             EnglishWord englishWord = englishDictionaryService.showByKey(key);
             StringBuilder stringBuilder = new StringBuilder();
@@ -122,4 +130,23 @@ public class MainController {
         }
     }
 
+    private void searchInSpainRuDict(String key, String value, Model model) {
+        if (key != null && !key.isEmpty()) {
+            //add logic
+            model.addAttribute("message", "Ищу в словаре испанском по ключу " + key);
+        } else if (value != null && !value.isEmpty()) {
+            //add logic
+            model.addAttribute("message", "Ищу в словаре испанском по значению " + value);
+        }
+    }
+
+    private void searchInBothDicts(String key, String value, Model model) {
+        if (key != null && !key.isEmpty()) {
+            //add logic
+            model.addAttribute("message", "Ищу в обоих словарях по ключу " + key);
+        } else if (value != null && !value.isEmpty()) {
+            //add logic
+            model.addAttribute("message", "Ищу в обоих словарях по значению " + value);
+        }
+    }
 }
