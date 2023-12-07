@@ -71,4 +71,8 @@ public class EnglishDictionaryService {
     public EnglishWord showByValue(String value) {
         return englishDictionaryDAO.getByValue(value);
     }
+
+    public void deleteByKey(String deleteWord) {
+        englishDictionaryDAO.deleteByKey(deleteWord);
+    }
 }

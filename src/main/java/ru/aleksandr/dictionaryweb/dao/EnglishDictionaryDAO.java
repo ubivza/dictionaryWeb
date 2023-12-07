@@ -28,9 +28,7 @@ public class EnglishDictionaryDAO implements EngRuRepository {
     public List<EnglishWord> getAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        List<EnglishWord> englishWordList = entityManager.createQuery("from EnglishWord", EnglishWord.class)
-                    .getResultList();
-        return englishWordList;
+        return entityManager.createQuery("from EnglishWord", EnglishWord.class).getResultList();
     }
 
     @Override
@@ -39,10 +37,8 @@ public class EnglishDictionaryDAO implements EngRuRepository {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
-        System.out.println("before persist");
         entityManager.persist(ew);
         entityManager.getTransaction().commit();
-        System.out.println("after persist");
         return true;
     }
 
@@ -60,8 +56,11 @@ public class EnglishDictionaryDAO implements EngRuRepository {
     public boolean deleteByKey(String key) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("delete from EnglishWord where word=:key");
         query.setParameter("key", key);
+        query.executeUpdate();
+        entityManager.getTransaction().commit();
         return true;
     }
 

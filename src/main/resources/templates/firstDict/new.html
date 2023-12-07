@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>Добавить слово в англо-русский словарь :</h1>
+<hr/>
     <form method="post" action="http://localhost:8080/eng-ru-dict/new">
         <h2>Введите слово (Формат 5 цифр) :</h2><input type="text" name="newKeyWord"><br>
         <h2>Введите перевод :</h2><input type="text" name="newValueWord"><br>
@@ -13,5 +14,9 @@
     </form>
 <br>
 <p th:text="${message}"></p>
+<hr/>
+<form action="http://localhost:8080">
+    <button type="submit">Вернуться на главную страницу</button>
+</form>
 </body>
 </html>
