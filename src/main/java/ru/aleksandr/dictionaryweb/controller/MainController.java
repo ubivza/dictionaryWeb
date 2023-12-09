@@ -86,11 +86,15 @@ public class MainController {
 
     private void searchInBothDicts(String key, String value, Model model) {
         if (key != null && !key.isEmpty()) {
-            //add logic
-            model.addAttribute("message", "Ищу в обоих словарях по ключу " + key);
+            EnglishWord englishWord = englishDictionaryService.showByKey(key);
+            StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(List.of(englishWord));
+            //find in spain
+            model.addAttribute("message", "Ищу в обоих словарях по ключу " + sb);
         } else if (value != null && !value.isEmpty()) {
-            //add logic
-            model.addAttribute("message", "Ищу в обоих словарях по значению " + value);
+            List<EnglishWord> englishWordList = englishDictionaryService.showByValue(value);
+            StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(englishWordList);
+            //find in spain
+            model.addAttribute("message", "Ищу в обоих словарях по значению " + sb);
         }
     }
 }

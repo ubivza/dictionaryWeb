@@ -12,7 +12,7 @@ public class EngRuMessageFormatter {
         StringBuffer sb = new StringBuffer();
         switch (englishWords.size()) {
             case 0:
-                sb.append("Значение по заданным параметрам не найдено");
+                sb.append("Значение по заданным параметрам не найдено в англо-русском словаре");
                 break;
             case 1:
                 EnglishWord englishWord = englishWords.get(0);
