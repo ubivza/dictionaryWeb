@@ -18,7 +18,7 @@ public class EngRuMessageFormatter {
                 EnglishWord englishWord = englishWords.get(0);
                 switch (englishWord.getEnglishTranslateWords().size()) {
                     case 0:
-                        sb.append(englishWord.getWord() + " - " + " перевода еще нет");
+                        sb.append(englishWord.getWord() + " - " + " перевода пока нет");
                         break;
                     case 1:
                         sb.append(englishWord.getWord() +
@@ -38,7 +38,7 @@ public class EngRuMessageFormatter {
                     EnglishWord engWord = englishWords.get(i);
                     switch (engWord.getEnglishTranslateWords().size()) {
                         case 0:
-                            sb.append(engWord.getWord() + " - " + " перевода еще нет");
+                            sb.append(engWord.getWord() + " - " + " перевода пока нет");
                             sb.append("\n");
                             break;
                         case 1:
@@ -63,7 +63,21 @@ public class EngRuMessageFormatter {
 
     public List<String> listToListMessageFormatter(List<EnglishWord> englishWords) {
         List<String> list = new ArrayList<>();
+        for (EnglishWord ew : englishWords) {
+            StringBuffer translations = new StringBuffer();
 
+            if (ew.getEnglishTranslateWords().isEmpty()) {
+                translations.append("перевода пока нет");
+            } else {
+
+                translations.append(ew.getEnglishTranslateWords().get(0).getTranslation());
+                for (int i = 1; i < ew.getEnglishTranslateWords().size(); i++) {
+                    translations.append(", ");
+                    translations.append(ew.getEnglishTranslateWords().get(i).getTranslation());
+                }
+            }
+            list.add(ew.getWord() + " - " + translations);
+        }
         return list;
     }
 }

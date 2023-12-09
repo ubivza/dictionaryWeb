@@ -10,9 +10,13 @@ create table spanish_translate(row_id int primary key generated always as identi
 
 insert into eng_word(word) values(12351);
 insert into eng_word(word) values(12352);
+insert into eng_word(word) values(12353);
 
 insert into eng_translate(eng_word_id, translate_word) values(1, 'derevo');
 insert into eng_translate(eng_word_id, translate_word) values(2, 'kopiya');
+insert into eng_translate(eng_word_id, translate_word) values(2, 'kop');
+insert into eng_translate(eng_word_id, translate_word) values(2, 'kopiya');
+insert into eng_translate(eng_word_id, translate_word) values(1, 'kopiya');
 
 insert into spanish_word(word) values('have');
 insert into spanish_word(word) values('name');

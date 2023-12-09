@@ -4,9 +4,9 @@ package ru.aleksandr.dictionaryweb.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.repository.EngRuRepository;
 
@@ -49,11 +49,9 @@ public class EnglishDictionaryDAO implements EngRuRepository {
     @Transactional
     public boolean deleteByKey(String key) {
 
-        entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("delete from EnglishWord where word=:key");
         query.setParameter("key", key);
         query.executeUpdate();
-        entityManager.getTransaction().commit();
         return true;
     }
 
@@ -72,7 +70,6 @@ public class EnglishDictionaryDAO implements EngRuRepository {
         Query query = entityManager.createQuery("from EnglishWord e join e.englishTranslateWords t where t.translation=:translateWord");
         query.setParameter("translateWord", value);
 
-        //может быть не уникальный результат, обработать ситуацию
         return query.getResultList();
     }
 }

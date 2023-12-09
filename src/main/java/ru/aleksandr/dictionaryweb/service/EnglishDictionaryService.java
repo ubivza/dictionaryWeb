@@ -29,7 +29,8 @@ public class EnglishDictionaryService {
         EnglishWord englishWord = new EnglishWord();
         englishWord.setWord(Integer.valueOf(arr[0]));
 
-        if (arr.length >= 2) {
+        //поработать с множественным переводом
+        if (arr.length == 2) {
             EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
 
             englishTranslateWord.setTranslation(arr[1]);

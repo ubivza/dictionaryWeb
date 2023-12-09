@@ -26,24 +26,8 @@ public class MainController {
     public String showMainMenu(Model model) {
         //этого можно не делать, но у меня не получилось это отдать на обработку
         // таймлифу из-за нехватки опыта работы с ним
-        //List<EnglishWord> wordList = englishDictionaryService.showAll();
-
-        List<String> valuesToShow = new ArrayList<>();
-        for (EnglishWord ew : englishDictionaryService.showAll()) {
-            StringBuffer translations = new StringBuffer();
-
-            if (ew.getEnglishTranslateWords().isEmpty()) {
-                translations.append("перевода пока нет");
-            } else {
-
-                translations.append(ew.getEnglishTranslateWords().get(0).getTranslation());
-                for (int i = 1; i < ew.getEnglishTranslateWords().size(); i++) {
-                    translations.append(", ");
-                    translations.append(ew.getEnglishTranslateWords().get(i).getTranslation());
-                }
-            }
-            valuesToShow.add(ew.getWord() + " - " + translations);
-        }
+        List<EnglishWord> wordList = englishDictionaryService.showAll();
+        List<String> valuesToShow = engRuMessageFormatter.listToListMessageFormatter(wordList);
         model.addAttribute("allValuesFromDictionary", valuesToShow);
         return "main";
     }
@@ -53,22 +37,9 @@ public class MainController {
                                   @RequestParam(name = "valueWord", required = false) String valueWord,
                                   @RequestParam(name = "dictionary", required = false) String dictionary,
                                   Model model) {
-        List<String> valuesToShow = new ArrayList<>();
-        for (EnglishWord ew : englishDictionaryService.showAll()) {
-            StringBuffer translations = new StringBuffer();
 
-            if (ew.getEnglishTranslateWords().isEmpty()) {
-                translations.append("перевода пока нет");
-            } else {
-
-                translations.append(ew.getEnglishTranslateWords().get(0).getTranslation());
-                for (int i = 1; i < ew.getEnglishTranslateWords().size(); i++) {
-                    translations.append(", ");
-                    translations.append(ew.getEnglishTranslateWords().get(i).getTranslation());
-                }
-            }
-            valuesToShow.add(ew.getWord() + " - " + translations);
-        }
+        List<EnglishWord> wordList = englishDictionaryService.showAll();
+        List<String> valuesToShow = engRuMessageFormatter.listToListMessageFormatter(wordList);
         model.addAttribute("allValuesFromDictionary", valuesToShow);
         if (dictionary == null) {
             model.addAttribute("message", "Выберите словарь из списка сверху " +
@@ -87,22 +58,8 @@ public class MainController {
     public String deleteWord(@RequestParam(name = "select") String wordToDelete,
                              Model model) {
         englishDictionaryService.deleteByKey(wordToDelete.split(" - ")[0]);
-        List<String> valuesToShow = new ArrayList<>();
-        for (EnglishWord ew : englishDictionaryService.showAll()) {
-            StringBuffer translations = new StringBuffer();
-
-            if (ew.getEnglishTranslateWords().isEmpty()) {
-                translations.append("перевода пока нет");
-            } else {
-
-                translations.append(ew.getEnglishTranslateWords().get(0).getTranslation());
-                for (int i = 1; i < ew.getEnglishTranslateWords().size(); i++) {
-                    translations.append(", ");
-                    translations.append(ew.getEnglishTranslateWords().get(i).getTranslation());
-                }
-            }
-            valuesToShow.add(ew.getWord() + " - " + translations);
-        }
+        List<EnglishWord> wordList = englishDictionaryService.showAll();
+        List<String> valuesToShow = engRuMessageFormatter.listToListMessageFormatter(wordList);
         model.addAttribute("allValuesFromDictionary", valuesToShow);
         model.addAttribute("message", wordToDelete + " удалено");
         return "main";
