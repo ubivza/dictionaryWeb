@@ -1,6 +1,7 @@
 package ru.aleksandr.dictionaryweb.util;
 
 import org.springframework.stereotype.Component;
+import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class EngRuMessageFormatter {
                             sb.append(engWord.getWord() + " - " + engWord.getEnglishTranslateWords().get(0).getTranslation());
                             for (int j = 1; j < engWord.getEnglishTranslateWords().size(); j++) {
                                 sb.append(", ");
-                                sb.append(engWord.getEnglishTranslateWords().get(i).getTranslation());
+                                sb.append(engWord.getEnglishTranslateWords().get(j).getTranslation());
                             }
                             sb.append("\n");
                             break;
