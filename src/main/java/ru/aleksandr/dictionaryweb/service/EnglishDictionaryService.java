@@ -1,7 +1,6 @@
 package ru.aleksandr.dictionaryweb.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.aleksandr.dictionaryweb.dao.EnglishDictionaryDAO;
 import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
@@ -24,12 +23,15 @@ public class EnglishDictionaryService {
     }
 
     public void saveString(String word) {
-        String[] arr = word.split(" ");
+        String[] arr = word.split(" ", 2);
+        String[] arrWords = new String[0];
+        if (arr[1].contains(", ")) {
+            arrWords = arr[1].split(", ");
+        }
 
         EnglishWord englishWord = new EnglishWord();
         englishWord.setWord(Integer.valueOf(arr[0]));
 
-        //поработать с множественным переводом
         if (arr.length == 2) {
             EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
 
@@ -38,6 +40,18 @@ public class EnglishDictionaryService {
             englishWord.setEnglishTranslateWords(Collections.singletonList(englishTranslateWord));
         }
 
+        if (arrWords.length != 0) {
+            List<EnglishTranslateWord> wordList = new ArrayList<>();
+            for (int i = 0; i < arrWords.length; i++) {
+                EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
+
+                englishTranslateWord.setTranslation(arrWords[i]);
+                englishTranslateWord.setEnglishWord(englishWord);
+                wordList.add(englishTranslateWord);
+            }
+
+            englishWord.setEnglishTranslateWords(wordList);
+        }
         englishDictionaryDAO.save(englishWord);
     }
 

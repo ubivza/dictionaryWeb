@@ -3,12 +3,10 @@ package ru.aleksandr.dictionaryweb.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 import ru.aleksandr.dictionaryweb.util.EngRuMessageFormatter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,8 +22,6 @@ public class MainController {
 
     @GetMapping
     public String showMainMenu(Model model) {
-        //этого можно не делать, но у меня не получилось это отдать на обработку
-        // таймлифу из-за нехватки опыта работы с ним
         List<EnglishWord> wordList = englishDictionaryService.showAll();
         List<String> valuesToShow = engRuMessageFormatter.listToListMessageFormatter(wordList);
         model.addAttribute("allValuesFromDictionary", valuesToShow);
