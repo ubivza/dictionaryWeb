@@ -45,7 +45,7 @@ public class EnglishDictionaryService {
         return result;
     }
 
-    public EnglishWord showByValue(String value) {
+    public List<EnglishWord> showByValue(String value) {
         return englishDictionaryDAO.getByValue(value);
     }
 

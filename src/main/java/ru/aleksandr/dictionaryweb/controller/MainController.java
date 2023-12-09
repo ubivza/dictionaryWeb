@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
+import ru.aleksandr.dictionaryweb.util.EngRuMessageFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +15,19 @@ import java.util.List;
 @RequestMapping("/")
 public class MainController {
     private final EnglishDictionaryService englishDictionaryService;
+    private final EngRuMessageFormatter engRuMessageFormatter;
 
-    public MainController(EnglishDictionaryService englishDictionaryService) {
+    public MainController(EnglishDictionaryService englishDictionaryService, EngRuMessageFormatter engRuMessageFormatter) {
         this.englishDictionaryService = englishDictionaryService;
+        this.engRuMessageFormatter = engRuMessageFormatter;
     }
 
     @GetMapping
     public String showMainMenu(Model model) {
         //этого можно не делать, но у меня не получилось это отдать на обработку
         // таймлифу из-за нехватки опыта работы с ним
+        //List<EnglishWord> wordList = englishDictionaryService.showAll();
+
         List<String> valuesToShow = new ArrayList<>();
         for (EnglishWord ew : englishDictionaryService.showAll()) {
             StringBuffer translations = new StringBuffer();
@@ -107,26 +112,12 @@ public class MainController {
     private void searchInEngRuDict(String key, String value, Model model) {
         if (key != null && !key.isEmpty()) {
             EnglishWord englishWord = englishDictionaryService.showByKey(key);
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(englishWord.getWord());
-            if (englishWord.getEnglishTranslateWords() != null && englishWord.getEnglishTranslateWords().size() > 0) {
-                stringBuilder.append(" - ");
-                for (EnglishTranslateWord et : englishWord.getEnglishTranslateWords()) {
-                    stringBuilder.append(et.getTranslation());
-                }
-            }
-            model.addAttribute("message", stringBuilder);
+            StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(List.of(englishWord));
+            model.addAttribute("message", sb);
         } else if (value != null && !value.isEmpty()) {
-            EnglishWord englishWord = englishDictionaryService.showByValue(value);
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(englishWord.getWord());
-            if (englishWord.getEnglishTranslateWords() != null && englishWord.getEnglishTranslateWords().size() > 0) {
-                stringBuilder.append(" - ");
-                for (EnglishTranslateWord et : englishWord.getEnglishTranslateWords()) {
-                    stringBuilder.append(et.getTranslation());
-                }
-            }
-            model.addAttribute("message", stringBuilder);
+            List<EnglishWord> englishWordList = englishDictionaryService.showByValue(value);
+            StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(englishWordList);
+            model.addAttribute("message", sb);
         }
     }
 
