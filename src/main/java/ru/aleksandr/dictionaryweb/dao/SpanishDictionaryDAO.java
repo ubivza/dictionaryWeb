@@ -28,7 +28,6 @@ public class SpanishDictionaryDAO {
 
     @Transactional
     public boolean update(SpanishWord sw) {
-        //update
         return true;
     }
 }

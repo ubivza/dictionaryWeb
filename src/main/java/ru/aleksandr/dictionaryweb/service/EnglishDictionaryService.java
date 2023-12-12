@@ -37,7 +37,9 @@ public class EnglishDictionaryService {
 
             englishTranslateWord.setTranslation(arr[1]);
             englishTranslateWord.setEnglishWord(englishWord);
-            englishWord.setEnglishTranslateWords(Collections.singletonList(englishTranslateWord));
+            List<EnglishTranslateWord> list = new ArrayList<>();
+            list.add(englishTranslateWord);
+            englishWord.setEnglishTranslateWords(list);
         }
 
         if (arrWords.length != 0) {
@@ -79,12 +81,14 @@ public class EnglishDictionaryService {
 
         englishWord.setWord(Integer.valueOf(arr[0]));
 
-        if (arr.length == 2) {
+        if (arr.length == 2 && !arr[1].isEmpty()) {
             EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
 
             englishTranslateWord.setTranslation(arr[1]);
             englishTranslateWord.setEnglishWord(englishWord);
-            englishWord.setEnglishTranslateWords(Collections.singletonList(englishTranslateWord));
+            List<EnglishTranslateWord> list = new ArrayList<>();
+            list.add(englishTranslateWord);
+            englishWord.setEnglishTranslateWords(list);
         }
 
         if (arrWords.length != 0) {
