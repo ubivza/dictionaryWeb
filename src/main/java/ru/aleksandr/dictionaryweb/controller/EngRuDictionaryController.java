@@ -1,7 +1,6 @@
 package ru.aleksandr.dictionaryweb.controller;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +8,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 
 @Controller
+@Slf4j
 @RequestMapping("eng-ru-dict")
 public class EngRuDictionaryController {
 
@@ -20,7 +20,11 @@ public class EngRuDictionaryController {
 
     @GetMapping("/edit")
     public String editWord(Model model) {
-        model.addAttribute("id", englishDictionaryService.showByKey((String) model.getAttribute("key")).getId());
+        try {
+            model.addAttribute("id", englishDictionaryService.showByKey((String) model.getAttribute("key")).getId());
+        } catch (Exception e) {
+            log.warn(e + " in /edit controller because of redirect and not correct key redirected");
+        }
         return "firstDict/edit";
     }
 
@@ -30,9 +34,13 @@ public class EngRuDictionaryController {
     }
 
     @PostMapping("/new")
-    public String newWord(@RequestParam(name = "newKeyWord") String key,
+    public String newWord(@RequestParam(name = "newKeyWord", required = false) String key,
                           @RequestParam(name = "newValueWord", required = false) String value,
                           RedirectAttributes redirectAttributes) {
+        if (key.isEmpty() || !key.matches("[0-9]{5}")) {
+            redirectAttributes.addFlashAttribute("message", "Ключ не может быть пустым или содержать не 5 цифровых значений");
+            return "redirect:/eng-ru-dict/new";
+        }
         englishDictionaryService.saveString(key + " " + value);
         redirectAttributes.addFlashAttribute("message", key + " - " +  value + " удачно добавлены в словарь!");
         return "redirect:/eng-ru-dict/new";
@@ -48,6 +56,13 @@ public class EngRuDictionaryController {
             englishDictionaryService.deleteById(Long.valueOf(id));
             redirectAttributes.addFlashAttribute("message", "Слово было удалено");
             return "redirect:/";
+        }
+        if (!key.matches("[0-9]{5}")) {
+            redirectAttributes.addFlashAttribute("key", key);
+            redirectAttributes.addFlashAttribute("value", value);
+            redirectAttributes.addFlashAttribute("id", id);
+            redirectAttributes.addFlashAttribute("message", "Ключ не может содержать не 5 цифровых значений");
+            return "redirect:/eng-ru-dict/edit";
         }
         englishDictionaryService.updateById(Long.valueOf(id), key + " " + value);
         redirectAttributes.addFlashAttribute("message", key + " - " + value + " были изменены");

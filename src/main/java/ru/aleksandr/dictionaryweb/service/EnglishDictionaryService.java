@@ -32,7 +32,7 @@ public class EnglishDictionaryService {
         EnglishWord englishWord = new EnglishWord();
         englishWord.setWord(Integer.valueOf(arr[0]));
 
-        if (arr.length == 2) {
+        if (arr.length == 2 && !arr[1].isEmpty()) {
             EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
 
             englishTranslateWord.setTranslation(arr[1]);

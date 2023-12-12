@@ -1,5 +1,6 @@
 package ru.aleksandr.dictionaryweb.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import ru.aleksandr.dictionaryweb.util.EngRuMessageFormatter;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequestMapping("/")
 public class MainController {
     private final EnglishDictionaryService englishDictionaryService;
@@ -68,9 +70,14 @@ public class MainController {
 
     private void searchInEngRuDict(String key, String value, RedirectAttributes redirectAttributes) {
         if (key != null && !key.isEmpty()) {
-            EnglishWord englishWord = englishDictionaryService.showByKey(key);
-            StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(List.of(englishWord));
-            redirectAttributes.addFlashAttribute("message", sb);
+            try {
+                EnglishWord englishWord = englishDictionaryService.showByKey(key);
+                StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(List.of(englishWord));
+                redirectAttributes.addFlashAttribute("message", sb);
+            } catch (Exception e) {
+                log.warn(e + " in / post mapping because of not correct key");
+                redirectAttributes.addFlashAttribute("message", "Такого ключа не существует");
+            }
         } else if (value != null && !value.isEmpty()) {
             List<EnglishWord> englishWordList = englishDictionaryService.showByValue(value);
             StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(englishWordList);
