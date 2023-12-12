@@ -3,6 +3,7 @@ package ru.aleksandr.dictionaryweb.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 import ru.aleksandr.dictionaryweb.util.EngRuMessageFormatter;
@@ -32,69 +33,72 @@ public class MainController {
     public String getSelectedWord(@RequestParam(name = "keyWord", required = false) String keyWord,
                                   @RequestParam(name = "valueWord", required = false) String valueWord,
                                   @RequestParam(name = "dictionary", required = false) String dictionary,
-                                  Model model) {
+                                  RedirectAttributes redirectAttributes) {
 
-        List<EnglishWord> wordList = englishDictionaryService.showAll();
-        List<String> valuesToShow = engRuMessageFormatter.listToListMessageFormatter(wordList);
-        model.addAttribute("allValuesFromDictionary", valuesToShow);
         if (dictionary == null) {
-            model.addAttribute("message", "Выберите словарь из списка сверху " +
+            redirectAttributes.addFlashAttribute("message", "Выберите словарь из списка сверху " +
                     "и введите значение по которому будет вестись поиск");
         } else if (dictionary.equals("engRuDict")) {
-            searchInEngRuDict(keyWord, valueWord, model);
+            searchInEngRuDict(keyWord, valueWord, redirectAttributes);
         } else if (dictionary.equals("spainRuDict")) {
-            searchInSpainRuDict(keyWord, valueWord, model);
+            searchInSpainRuDict(keyWord, valueWord, redirectAttributes);
         } else {
-            searchInBothDicts(keyWord, valueWord, model);
+            searchInBothDicts(keyWord, valueWord, redirectAttributes);
         }
-        return "main";
+        return "redirect:/";
     }
 
     @DeleteMapping
     public String deleteWord(@RequestParam(name = "select") String wordToDelete,
-                             Model model) {
-        englishDictionaryService.deleteByKey(wordToDelete.split(" - ")[0]);
-        List<EnglishWord> wordList = englishDictionaryService.showAll();
-        List<String> valuesToShow = engRuMessageFormatter.listToListMessageFormatter(wordList);
-        model.addAttribute("allValuesFromDictionary", valuesToShow);
-        model.addAttribute("message", wordToDelete + " удалено");
-        return "main";
+                             @RequestParam(name = "deleteButton", required = false) String deleteButton,
+                             @RequestParam(name = "updateButton", required = false) String updateButton,
+                             RedirectAttributes redirectAttributes) {
+
+        if (deleteButton != null) {
+            englishDictionaryService.deleteByKey(wordToDelete.split(" - ")[0]);
+            redirectAttributes.addFlashAttribute("message", wordToDelete + " удалено");
+            return "redirect:/";
+        } else {
+            redirectAttributes.addFlashAttribute("key", wordToDelete.split(" - ")[0]);
+            redirectAttributes.addFlashAttribute("value", wordToDelete.split(" - ")[1]);
+            return "redirect:/eng-ru-dict/edit";
+        }
     }
 
 
-    private void searchInEngRuDict(String key, String value, Model model) {
+    private void searchInEngRuDict(String key, String value, RedirectAttributes redirectAttributes) {
         if (key != null && !key.isEmpty()) {
             EnglishWord englishWord = englishDictionaryService.showByKey(key);
             StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(List.of(englishWord));
-            model.addAttribute("message", sb);
+            redirectAttributes.addFlashAttribute("message", sb);
         } else if (value != null && !value.isEmpty()) {
             List<EnglishWord> englishWordList = englishDictionaryService.showByValue(value);
             StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(englishWordList);
-            model.addAttribute("message", sb);
+            redirectAttributes.addFlashAttribute("message", sb);
         }
     }
 
-    private void searchInSpainRuDict(String key, String value, Model model) {
+    private void searchInSpainRuDict(String key, String value, RedirectAttributes redirectAttributes) {
         if (key != null && !key.isEmpty()) {
             //add logic
-            model.addAttribute("message", "Ищу в словаре испанском по ключу " + key);
+            redirectAttributes.addFlashAttribute("message", "Ищу в словаре испанском по ключу " + key);
         } else if (value != null && !value.isEmpty()) {
             //add logic
-            model.addAttribute("message", "Ищу в словаре испанском по значению " + value);
+            redirectAttributes.addFlashAttribute("message", "Ищу в словаре испанском по значению " + value);
         }
     }
 
-    private void searchInBothDicts(String key, String value, Model model) {
+    private void searchInBothDicts(String key, String value, RedirectAttributes redirectAttributes) {
         if (key != null && !key.isEmpty()) {
             EnglishWord englishWord = englishDictionaryService.showByKey(key);
             StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(List.of(englishWord));
             //find in spain
-            model.addAttribute("message", "Ищу в обоих словарях по ключу " + sb);
+            redirectAttributes.addFlashAttribute("message", "Ищу в обоих словарях по ключу " + sb);
         } else if (value != null && !value.isEmpty()) {
             List<EnglishWord> englishWordList = englishDictionaryService.showByValue(value);
             StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(englishWordList);
             //find in spain
-            model.addAttribute("message", "Ищу в обоих словарях по значению " + sb);
+            redirectAttributes.addFlashAttribute("message", "Ищу в обоих словарях по значению " + sb);
         }
     }
 }

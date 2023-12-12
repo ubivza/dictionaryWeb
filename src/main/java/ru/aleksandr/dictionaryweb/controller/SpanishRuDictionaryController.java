@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("spain-ru-dict")
-public class SecondDictionaryController {
+public class SpanishRuDictionaryController {
 
     @GetMapping
     public String showMainDictionaryPage(Model model) {

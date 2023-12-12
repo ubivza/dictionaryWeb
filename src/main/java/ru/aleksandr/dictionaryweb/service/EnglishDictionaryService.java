@@ -67,4 +67,43 @@ public class EnglishDictionaryService {
     public void deleteByKey(String deleteWord) {
         englishDictionaryDAO.deleteByKey(deleteWord);
     }
+
+    public void updateById(Long id, String word) {
+        EnglishWord englishWord = englishDictionaryDAO.getById(id);
+
+        String[] arr = word.split(" ", 2);
+        String[] arrWords = new String[0];
+        if (arr[1].contains(", ")) {
+            arrWords = arr[1].split(", ");
+        }
+
+        englishWord.setWord(Integer.valueOf(arr[0]));
+
+        if (arr.length == 2) {
+            EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
+
+            englishTranslateWord.setTranslation(arr[1]);
+            englishTranslateWord.setEnglishWord(englishWord);
+            englishWord.setEnglishTranslateWords(Collections.singletonList(englishTranslateWord));
+        }
+
+        if (arrWords.length != 0) {
+            List<EnglishTranslateWord> wordList = new ArrayList<>();
+            for (int i = 0; i < arrWords.length; i++) {
+                EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
+
+                englishTranslateWord.setTranslation(arrWords[i]);
+                englishTranslateWord.setEnglishWord(englishWord);
+                wordList.add(englishTranslateWord);
+            }
+
+            englishWord.setEnglishTranslateWords(wordList);
+        }
+
+        englishDictionaryDAO.update(englishWord);
+    }
+
+    public void deleteById(Long id) {
+        englishDictionaryDAO.deleteByID(id);
+    }
 }

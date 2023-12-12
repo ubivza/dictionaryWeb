@@ -14,10 +14,9 @@
         <option th:each="word : ${allValuesFromDictionary}" th:value="${word}" th:text="${word}">
         </option>
     </select>
-    <button type="submit">Удалить выбранное слово</button>
+    <button type="submit" name="deleteButton">Удалить выбранное слово</button>
     <br>
-    <!-- как перенести на страницу редактирования выбранного в селект теге слова?? -->
-    <button type="button">Редактировать выбранное слово</button>
+    <button type="submit" name ="updateButton">Редактировать выбранное слово</button>
 </form>
 <br>
 <form action="http://localhost:8080/eng-ru-dict/new">
