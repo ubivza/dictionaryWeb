@@ -23,8 +23,4 @@ public class SpanishWord {
 
     public SpanishWord() {}
 
-    public SpanishWord(String word, List<SpanishTranslateWord> spanishTranslateWords) {
-        this.word = word;
-        this.spanishTranslateWords = spanishTranslateWords;
-    }
 }

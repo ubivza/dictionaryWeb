@@ -22,8 +22,4 @@ public class EnglishWord {
 
     public EnglishWord() {}
 
-    public EnglishWord(Integer word, List<EnglishTranslateWord> englishTranslateWords) {
-        this.word = word;
-        this.englishTranslateWords = englishTranslateWords;
-    }
 }

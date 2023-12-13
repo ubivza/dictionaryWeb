@@ -1,11 +1,15 @@
 package ru.aleksandr.dictionaryweb.repository;
 
+
 import java.util.List;
 
 public interface GenericRepository<T, KEY> {
     List<T> getAll();
     T getByKey(KEY key);
-    boolean save(T t);
-    boolean update(T t);
-    boolean deleteByKey(KEY key);
+    void save(T t);
+    void update(T t);
+    void deleteByKey(KEY key);
+     List<T> getByValue(String value);
+    T getById(Long id);
+    void deleteById(Long id);
 }

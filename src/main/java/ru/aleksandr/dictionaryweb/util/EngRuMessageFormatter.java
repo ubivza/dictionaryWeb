@@ -1,7 +1,6 @@
 package ru.aleksandr.dictionaryweb.util;
 
 import org.springframework.stereotype.Component;
-import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 
 import java.util.ArrayList;

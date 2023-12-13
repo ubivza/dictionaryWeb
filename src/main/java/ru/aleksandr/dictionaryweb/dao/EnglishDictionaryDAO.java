@@ -31,27 +31,24 @@ public class EnglishDictionaryDAO implements EngRuRepository {
 
     @Override
     @Transactional
-    public boolean save(EnglishWord ew) {
+    public void save(EnglishWord ew) {
 
         entityManager.persist(ew);
-        return true;
     }
 
     @Override
     @Transactional
-    public boolean update(EnglishWord ew) {
+    public void update(EnglishWord ew) {
         entityManager.merge(ew);
-        return true;
     }
 
     @Override
     @Transactional
-    public boolean deleteByKey(String key) {
+    public void deleteByKey(String key) {
 
         Query query = entityManager.createQuery("delete from EnglishWord where word=:key");
         query.setParameter("key", key);
         query.executeUpdate();
-        return true;
     }
 
     @Override
@@ -65,6 +62,7 @@ public class EnglishDictionaryDAO implements EngRuRepository {
     }
 
     @Transactional
+    @Override
     public List<EnglishWord> getByValue(String value) {
 
         Query query = entityManager.createQuery("from EnglishWord e join e.englishTranslateWords t where t.translation=:translateWord");
@@ -74,12 +72,14 @@ public class EnglishDictionaryDAO implements EngRuRepository {
     }
 
     @Transactional
+    @Override
     public EnglishWord getById(Long id) {
         return entityManager.find(EnglishWord.class, id);
     }
 
     @Transactional
-    public void deleteByID(Long id) {
+    @Override
+    public void deleteById(Long id) {
 
         Query query = entityManager.createQuery("delete from EnglishWord where id=:id");
         query.setParameter("id", id);

@@ -21,8 +21,4 @@ public class EnglishTranslateWord {
 
     public EnglishTranslateWord() {}
 
-    public EnglishTranslateWord(EnglishWord englishWord, String translation) {
-        this.englishWord = englishWord;
-        this.translation = translation;
-    }
 }

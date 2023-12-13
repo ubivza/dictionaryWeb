@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 
 import java.util.Arrays;
 
@@ -13,11 +12,9 @@ import java.util.Arrays;
 @EnableTransactionManagement
 public class DictionaryWebApplication implements CommandLineRunner {
 
-    private final EnglishDictionaryService englishDictionaryService;
     private ApplicationContext applicationContext;
 
-    public DictionaryWebApplication(EnglishDictionaryService englishDictionaryService, ApplicationContext applicationContext) {
-        this.englishDictionaryService = englishDictionaryService;
+    public DictionaryWebApplication(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 

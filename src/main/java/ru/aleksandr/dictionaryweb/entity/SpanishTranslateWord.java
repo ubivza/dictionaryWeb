@@ -19,8 +19,4 @@ public class SpanishTranslateWord {
 
     public SpanishTranslateWord() {}
 
-    public SpanishTranslateWord(SpanishWord spanishWord, String translation) {
-        this.spanishWord = spanishWord;
-        this.translation = translation;
-    }
 }

@@ -50,7 +50,6 @@ public class EngRuDictionaryController {
     public String editExistingWord(@RequestParam(name = "newKeyWord", required = false) String key,
                                    @RequestParam(name = "newValueWord", required = false) String value,
                                    @RequestParam(name = "id") String id,
-                                   Model model,
                                    RedirectAttributes redirectAttributes) {
         if (key.isEmpty()) {
             englishDictionaryService.deleteById(Long.valueOf(id));

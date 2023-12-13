@@ -1,25 +1,25 @@
 package ru.aleksandr.dictionaryweb.service;
 
 import org.springframework.stereotype.Service;
-import ru.aleksandr.dictionaryweb.dao.EnglishDictionaryDAO;
 import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
+import ru.aleksandr.dictionaryweb.repository.EngRuRepository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class EnglishDictionaryService {
 
-    private final EnglishDictionaryDAO englishDictionaryDAO;
+    private final EngRuRepository engRuRepository;
 
-    public EnglishDictionaryService(EnglishDictionaryDAO englishDictionaryDAO) {
-        this.englishDictionaryDAO = englishDictionaryDAO;
+    public EnglishDictionaryService(EngRuRepository engRuRepository) {
+        this.engRuRepository = engRuRepository;
     }
 
+
     public List<EnglishWord> showAll() {
-        return englishDictionaryDAO.getAll();
+        return engRuRepository.getAll();
     }
 
     public void saveString(String word) {
@@ -54,24 +54,23 @@ public class EnglishDictionaryService {
 
             englishWord.setEnglishTranslateWords(wordList);
         }
-        englishDictionaryDAO.save(englishWord);
+        engRuRepository.save(englishWord);
     }
 
     public EnglishWord showByKey(String key) {
-        EnglishWord result = englishDictionaryDAO.getByKey(key);
-        return result;
+        return engRuRepository.getByKey(key);
     }
 
     public List<EnglishWord> showByValue(String value) {
-        return englishDictionaryDAO.getByValue(value);
+        return engRuRepository.getByValue(value);
     }
 
     public void deleteByKey(String deleteWord) {
-        englishDictionaryDAO.deleteByKey(deleteWord);
+        engRuRepository.deleteByKey(deleteWord);
     }
 
     public void updateById(Long id, String word) {
-        EnglishWord englishWord = englishDictionaryDAO.getById(id);
+        EnglishWord englishWord = engRuRepository.getById(id);
 
         String[] arr = word.split(" ", 2);
         String[] arrWords = new String[0];
@@ -104,10 +103,10 @@ public class EnglishDictionaryService {
             englishWord.setEnglishTranslateWords(wordList);
         }
 
-        englishDictionaryDAO.update(englishWord);
+        engRuRepository.update(englishWord);
     }
 
     public void deleteById(Long id) {
-        englishDictionaryDAO.deleteByID(id);
+        engRuRepository.deleteById(id);
     }
 }
