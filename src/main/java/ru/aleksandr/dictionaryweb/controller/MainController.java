@@ -23,7 +23,10 @@ public class MainController {
     private final EngRuMessageFormatter engRuMessageFormatter;
     private final SpanishRuMessageFormatter spanishRuMessageFormatter;
 
-    public MainController(EnglishDictionaryService englishDictionaryService, SpanishDictionaryService spanishDictionaryService, EngRuMessageFormatter engRuMessageFormatter, SpanishRuMessageFormatter spanishRuMessageFormatter) {
+    public MainController(EnglishDictionaryService englishDictionaryService,
+                          SpanishDictionaryService spanishDictionaryService,
+                          EngRuMessageFormatter engRuMessageFormatter,
+                          SpanishRuMessageFormatter spanishRuMessageFormatter) {
         this.englishDictionaryService = englishDictionaryService;
         this.spanishDictionaryService = spanishDictionaryService;
         this.engRuMessageFormatter = engRuMessageFormatter;
@@ -46,10 +49,10 @@ public class MainController {
                                   @RequestParam(name = "valueWord", required = false) String valueWord,
                                   @RequestParam(name = "dictionary", required = false) String dictionary,
                                   RedirectAttributes redirectAttributes) {
-
         if (dictionary == null) {
-            redirectAttributes.addFlashAttribute("message", "Выберите словарь из списка сверху " +
-                    "и введите значение по которому будет вестись поиск");
+            redirectAttributes.addFlashAttribute("message",
+                    "Выберите словарь из списка сверху " +
+                    "и введите корректное значение по которому будет вестись поиск");
         } else if (dictionary.equals("engRuDict")) {
             searchInEngRuDict(keyWord, valueWord, redirectAttributes);
         } else if (dictionary.equals("spainRuDict")) {
@@ -62,18 +65,28 @@ public class MainController {
 
     @DeleteMapping
     public String deleteWord(@RequestParam(name = "select") String wordToDelete,
-                             @RequestParam(name = "deleteButton", required = false) String deleteButton,
-                             @RequestParam(name = "updateButton", required = false) String updateButton,
+                             @RequestParam(name = "deleteButtonEng", required = false) String deleteButton,
+                             @RequestParam(name = "updateButtonEng", required = false) String updateButton,
+                             @RequestParam(name = "deleteButtonSpain", required = false) String deleteButtonSp,
+                             @RequestParam(name = "updateButtonSpain", required = false) String updateButtonSp,
                              RedirectAttributes redirectAttributes) {
 
         if (deleteButton != null) {
             englishDictionaryService.deleteByKey(wordToDelete.split(" - ")[0]);
             redirectAttributes.addFlashAttribute("message", wordToDelete + " удалено");
             return "redirect:/";
-        } else {
+        } else if(deleteButtonSp != null) {
+            spanishDictionaryService.deleteByKey(wordToDelete.split(" - ")[0]);
+            redirectAttributes.addFlashAttribute("message", wordToDelete + " удалено");
+            return "redirect:/";
+        } else if (updateButton != null) {
             redirectAttributes.addFlashAttribute("key", wordToDelete.split(" - ")[0]);
             redirectAttributes.addFlashAttribute("value", wordToDelete.split(" - ")[1]);
             return "redirect:/eng-ru-dict/edit";
+        } else {
+            redirectAttributes.addFlashAttribute("key", wordToDelete.split(" - ")[0]);
+            redirectAttributes.addFlashAttribute("value", wordToDelete.split(" - ")[1]);
+            return "redirect:/spain-ru-dict/edit";
         }
     }
 
@@ -114,11 +127,17 @@ public class MainController {
 
     private void searchInBothDicts(String key, String value, RedirectAttributes redirectAttributes) {
         if (key != null && !key.isEmpty()) {
-            EnglishWord englishWord = englishDictionaryService.showByKey(key);
-            StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(List.of(englishWord));
-            SpanishWord spanishWord = spanishDictionaryService.showByKey(key);
-            sb.append(spanishRuMessageFormatter.listToStringMessageFormatter(List.of(spanishWord)));
-            redirectAttributes.addFlashAttribute("message", sb);
+            try {
+                EnglishWord englishWord = englishDictionaryService.showByKey(key);
+                StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(List.of(englishWord));
+                SpanishWord spanishWord = spanishDictionaryService.showByKey(key);
+                sb.append(spanishRuMessageFormatter.listToStringMessageFormatter(List.of(spanishWord)));
+                redirectAttributes.addFlashAttribute("message", sb);
+            } catch (Exception e) {
+                log.warn(e + " happened while searching in both dicts by key " + key);
+                redirectAttributes.addFlashAttribute("message",
+                        "По такому ключу ничего не найдено, попробуйте еще раз");
+            }
         } else if (value != null && !value.isEmpty()) {
             List<EnglishWord> englishWordList = englishDictionaryService.showByValue(value);
             StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(englishWordList);

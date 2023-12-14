@@ -32,7 +32,7 @@ public class SpanishRuMessageFormatter {
         StringBuffer sb = new StringBuffer();
         switch (wordList.size()) {
             case 0:
-                sb.append("Значение по заданным параметрам не найдено в испано-русском словаре");
+                sb.append("Значение по заданным параметрам не найдено в испано-русском словаре ");
                 break;
             case 1:
                 SpanishWord spanishWord = wordList.get(0);

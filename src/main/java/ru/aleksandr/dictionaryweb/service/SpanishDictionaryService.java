@@ -105,4 +105,8 @@ public class SpanishDictionaryService {
     public List<SpanishWord> showByValue(String value) {
         return spanishRuRepository.findByValue(value);
     }
+
+    public void deleteByKey(String key) {
+        spanishRuRepository.deleteByWord(key);
+    }
 }

@@ -14,9 +14,9 @@
         <option th:each="word : ${allValuesFromDictionary}" th:value="${word}" th:text="${word}">
         </option>
     </select>
-    <button type="submit" name="deleteButton">Удалить выбранное слово</button>
+    <button type="submit" name="deleteButtonEng">Удалить выбранное слово</button>
     <br>
-    <button type="submit" name ="updateButton">Редактировать выбранное слово</button>
+    <button type="submit" name ="updateButtonEng">Редактировать выбранное слово</button>
 </form>
 <br>
 <form action="http://localhost:8080/eng-ru-dict/new">
@@ -31,9 +31,9 @@
         <option th:each="word : ${allSpanishValuesFromDictionary}" th:value="${word}" th:text="${word}">
         </option>
     </select>
-    <button type="submit" name="deleteButton">Удалить выбранное слово</button>
+    <button type="submit" name="deleteButtonSpain">Удалить выбранное слово</button>
     <br>
-    <button type="submit" name ="updateButton">Редактировать выбранное слово</button>
+    <button type="submit" name ="updateButtonSpain">Редактировать выбранное слово</button>
 </form>
 <br>
 <form action="http://localhost:8080/spain-ru-dict/new">

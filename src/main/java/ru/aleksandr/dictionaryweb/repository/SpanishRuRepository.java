@@ -17,4 +17,6 @@ public interface SpanishRuRepository extends CrudRepository<SpanishWord, Long> {
 
     @Query("from SpanishWord s join s.spanishTranslateWords e where e.translation=?1")
     List<SpanishWord> findByValue(String value);
+
+    void deleteByWord(String word);
 }
