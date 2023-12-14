@@ -32,7 +32,11 @@ public class SpanishDictionaryService {
         SpanishWord spanishWord = new SpanishWord();
         spanishWord.setWord(arr[0]);
 
-        if (arr.length == 2 && !arr[1].isEmpty()) {
+        if (arr.length == 2) {
+            if (arr[1].isEmpty()) {
+                spanishWord.setSpanishTranslateWords(null);
+                return;
+            }
             SpanishTranslateWord spanishTranslateWord = new SpanishTranslateWord();
 
             spanishTranslateWord.setTranslation(arr[1]);
@@ -41,7 +45,6 @@ public class SpanishDictionaryService {
             list.add(spanishTranslateWord);
             spanishWord.setSpanishTranslateWords(list);
         }
-
         if (arrWords.length != 0) {
             List<SpanishTranslateWord> wordList = new ArrayList<>();
             for (int i = 0; i < arrWords.length; i++) {
@@ -71,7 +74,11 @@ public class SpanishDictionaryService {
         }
 
 
-        if (arr.length == 2 && !arr[1].isEmpty()) {
+        if (arr.length == 2) {
+            if (arr[1].isEmpty()) {
+                spanishWord.setSpanishTranslateWords(null);
+                return;
+            }
             SpanishTranslateWord spanishTranslateWord = new SpanishTranslateWord();
 
             spanishTranslateWord.setTranslation(arr[1]);

@@ -1,6 +1,8 @@
 package ru.aleksandr.dictionaryweb.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.repository.EngRuRepository;
@@ -32,7 +34,11 @@ public class EnglishDictionaryService {
         EnglishWord englishWord = new EnglishWord();
         englishWord.setWord(Integer.valueOf(arr[0]));
 
-        if (arr.length == 2 && !arr[1].isEmpty()) {
+        if (arr.length == 2) {
+            if (arr[1].isEmpty()) {
+                englishWord.setEnglishTranslateWords(null);
+                return;
+            }
             EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
 
             englishTranslateWord.setTranslation(arr[1]);
@@ -80,7 +86,11 @@ public class EnglishDictionaryService {
 
         englishWord.setWord(Integer.valueOf(arr[0]));
 
-        if (arr.length == 2 && !arr[1].isEmpty()) {
+        if (arr.length == 2) {
+            if (arr[1].isEmpty()) {
+                englishWord.setEnglishTranslateWords(null);
+                return;
+            }
             EnglishTranslateWord englishTranslateWord = new EnglishTranslateWord();
 
             englishTranslateWord.setTranslation(arr[1]);
@@ -89,7 +99,6 @@ public class EnglishDictionaryService {
             list.add(englishTranslateWord);
             englishWord.setEnglishTranslateWords(list);
         }
-
         if (arrWords.length != 0) {
             List<EnglishTranslateWord> wordList = new ArrayList<>();
             for (int i = 0; i < arrWords.length; i++) {
@@ -102,7 +111,6 @@ public class EnglishDictionaryService {
 
             englishWord.setEnglishTranslateWords(wordList);
         }
-
         engRuRepository.update(englishWord);
     }
 

@@ -25,7 +25,6 @@ public class EnglishDictionaryDAO implements EngRuRepository {
     @Override
     @Transactional
     public List<EnglishWord> getAll() {
-
         return entityManager.createQuery("from EnglishWord", EnglishWord.class).getResultList();
     }
 
