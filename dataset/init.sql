@@ -26,5 +26,5 @@ insert into spanish_word(word) values('have');
 insert into spanish_word(word) values('name');
 
 insert into spanish_translate(spanish_word_id, translate_word) values(1, 'imet');
-insert into spanish_translate(spanish_word_id, translate_word) values(2, 'imya')
+insert into spanish_translate(spanish_word_id, translate_word) values(2, 'imya');
 
