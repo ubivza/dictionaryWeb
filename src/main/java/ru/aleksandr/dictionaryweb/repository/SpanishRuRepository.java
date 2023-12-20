@@ -1,7 +1,7 @@
 package ru.aleksandr.dictionaryweb.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.aleksandr.dictionaryweb.entity.SpanishWord;
@@ -10,7 +10,8 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface SpanishRuRepository extends CrudRepository<SpanishWord, Long> {
+public interface SpanishRuRepository extends JpaRepository<SpanishWord, Long> {
+
 
     @Query("select s from SpanishWord s where s.word=?1")
     SpanishWord getByKey(String key);

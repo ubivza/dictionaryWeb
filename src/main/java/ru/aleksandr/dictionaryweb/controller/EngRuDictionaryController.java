@@ -51,6 +51,10 @@ public class EngRuDictionaryController {
                                    @RequestParam(name = "newValueWord", required = false) String value,
                                    @RequestParam(name = "id") String id,
                                    RedirectAttributes redirectAttributes) {
+
+        //попробовать переписать на @ModelAttribute
+
+
         if (key.isEmpty()) {
             englishDictionaryService.deleteById(Long.valueOf(id));
             redirectAttributes.addFlashAttribute("message", "Слово было удалено");

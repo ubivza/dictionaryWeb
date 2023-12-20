@@ -23,7 +23,7 @@ public class EnglishDictionaryDAO implements EngRuRepository {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<EnglishWord> getAll() {
 
         return entityManager.createQuery("from EnglishWord", EnglishWord.class).getResultList();
@@ -52,7 +52,7 @@ public class EnglishDictionaryDAO implements EngRuRepository {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public EnglishWord getByKey(String key) {
 
         Query query = entityManager.createQuery("from EnglishWord where word=:key");
@@ -61,7 +61,7 @@ public class EnglishDictionaryDAO implements EngRuRepository {
         return (EnglishWord) query.getSingleResult();
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<EnglishWord> getByValue(String value) {
 
@@ -71,7 +71,7 @@ public class EnglishDictionaryDAO implements EngRuRepository {
         return query.getResultList();
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public EnglishWord getById(Long id) {
         return entityManager.find(EnglishWord.class, id);
