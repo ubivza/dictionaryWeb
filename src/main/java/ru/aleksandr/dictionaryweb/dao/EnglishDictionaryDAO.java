@@ -8,38 +8,51 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ru.aleksandr.dictionaryweb.entity.EnglishWord;
+import ru.aleksandr.dictionaryweb.mapper.EngWordEntityModelMapper;
+import ru.aleksandr.dictionaryweb.model.EngWordModel;
 import ru.aleksandr.dictionaryweb.repository.EngRuRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @Slf4j
 public class EnglishDictionaryDAO implements EngRuRepository {
 
     private final EntityManager entityManager;
+    private final EngWordEntityModelMapper engWordEntityModelMapper;
 
-    public EnglishDictionaryDAO(EntityManager entityManager) {
+    public EnglishDictionaryDAO(EntityManager entityManager, EngWordEntityModelMapper engWordEntityModelMapper) {
         this.entityManager = entityManager;
+        this.engWordEntityModelMapper = engWordEntityModelMapper;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<EnglishWord> getAll() {
-
-        return entityManager.createQuery("from EnglishWord", EnglishWord.class).getResultList();
+    public List<EngWordModel> getAll() {
+        List<EnglishWord> result = entityManager.createQuery("from EnglishWord", EnglishWord.class)
+                .getResultList();
+        return result.stream().map(engWordEntityModelMapper::englishWordToEngWordModel)
+                .collect(Collectors.toList());
     }
 
     @Override
     @Transactional
-    public void save(EnglishWord ew) {
-
-        entityManager.persist(ew);
+    public void save(EngWordModel ewm) {
+        EnglishWord englishWord = engWordEntityModelMapper
+                .engWordModelToEnglishWord(ewm);
+        entityManager.persist(englishWord);
     }
 
     @Override
     @Transactional
-    public void update(EnglishWord ew) {
-        entityManager.merge(ew);
+    public void update(Long id, EngWordModel ewm) {
+        EnglishWord englishWord = engWordEntityModelMapper
+                .engWordModelToEnglishWord(ewm);
+        EnglishWord wordToUpdate = getById(id);
+        wordToUpdate.setWord(englishWord.getWord());
+        wordToUpdate.setEnglishTranslateWords(
+                englishWord.getEnglishTranslateWords());
     }
 
     @Override
@@ -53,28 +66,24 @@ public class EnglishDictionaryDAO implements EngRuRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public EnglishWord getByKey(String key) {
+    public EngWordModel getByKey(String key) {
 
         Query query = entityManager.createQuery("from EnglishWord where word=:key");
         query.setParameter("key", key);
-
-        return (EnglishWord) query.getSingleResult();
+        EnglishWord englishWord = (EnglishWord) query.getSingleResult();
+        return engWordEntityModelMapper.englishWordToEngWordModel(englishWord);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<EnglishWord> getByValue(String value) {
+    public List<EngWordModel> getByValue(String value) {
 
-        Query query = entityManager.createQuery("from EnglishWord e join e.englishTranslateWords t where t.translation=:translateWord");
+        Query query = entityManager.createQuery(
+                "from EnglishWord e join e.englishTranslateWords t where t.translation=:translateWord");
         query.setParameter("translateWord", value);
-
-        return query.getResultList();
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public EnglishWord getById(Long id) {
-        return entityManager.find(EnglishWord.class, id);
+        List<EnglishWord> list = query.getResultList();
+        return list.stream().map(engWordEntityModelMapper::englishWordToEngWordModel)
+                .collect(Collectors.toList());
     }
 
     @Transactional
@@ -84,5 +93,9 @@ public class EnglishDictionaryDAO implements EngRuRepository {
         Query query = entityManager.createQuery("delete from EnglishWord where id=:id");
         query.setParameter("id", id);
         query.executeUpdate();
+    }
+
+    private EnglishWord getById(Long id) {
+        return entityManager.find(EnglishWord.class, id);
     }
 }

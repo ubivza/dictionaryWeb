@@ -14,9 +14,11 @@ public class EngWordEntityModelMapper {
     public EnglishWord engWordModelToEnglishWord(EngWordModel model) {
         EnglishWord englishWord = EnglishWord.builder()
                         .word(model.getWord()).build();
-
+        if (model.getId() != null) {
+            englishWord.setId(model.getId());
+        }
         englishWord.setWord(model.getWord());
-        if (!model.getTranslations().isBlank() || !(model.getTranslations() == null)) {
+        if (!model.getTranslations().isBlank()) {
             String[] arr = model.getTranslations().split(", ");
             List<EnglishTranslateWord> list = new ArrayList<>();
             for (String translate : arr) {
@@ -24,24 +26,27 @@ public class EngWordEntityModelMapper {
                         .englishWord(englishWord).build());
             }
             englishWord.setEnglishTranslateWords(list);
+        } else {
+            englishWord.setEnglishTranslateWords(null);
         }
-        englishWord.setEnglishTranslateWords(null);
         return englishWord;
     }
 
     public EngWordModel englishWordToEngWordModel(EnglishWord entity) {
-        EngWordModel engWordModel = EngWordModel.builder()
+        EngWordModel engWordModel = EngWordModel.builder().id(entity.getId())
                 .word(entity.getWord()).build();
 
-        if (entity.getEnglishTranslateWords() != null) {
+        if (entity.getEnglishTranslateWords() != null
+                && !entity.getEnglishTranslateWords().isEmpty()) {
             StringBuilder sb = new StringBuilder();
             for (EnglishTranslateWord englishTranslateWord : entity.getEnglishTranslateWords()) {
                 sb.append(", ");
                 sb.append(englishTranslateWord.getTranslation());
             }
             sb.replace(0, 2, "");
+            engWordModel.setTranslations(sb.toString());
         } else {
-            engWordModel.setTranslations("перевода пока нет");
+            engWordModel.setTranslations(null);
         }
         return engWordModel;
     }

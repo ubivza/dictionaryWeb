@@ -11,7 +11,7 @@
 <h2>Англо-русский словарь :</h2>
 <form th:method="delete" action="http://localhost:8080">
     <select name="select">
-        <option th:each="word : ${allValuesFromDictionary}" th:value="${word}" th:text="${word}">
+        <option th:each="word : ${allValuesFromDictionary}" th:value="${word}" th:text="${word.toString()}">
         </option>
     </select>
     <button type="submit" name="deleteButtonEng">Удалить выбранное слово</button>

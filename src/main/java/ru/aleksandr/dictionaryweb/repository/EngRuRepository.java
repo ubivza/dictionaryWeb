@@ -1,7 +1,7 @@
 package ru.aleksandr.dictionaryweb.repository;
 
-import ru.aleksandr.dictionaryweb.entity.EnglishWord;
+import ru.aleksandr.dictionaryweb.model.EngWordModel;
 
-public interface EngRuRepository extends GenericRepository<EnglishWord, String> {
+public interface EngRuRepository extends GenericRepository<EngWordModel, String> {
 
 }

@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ru.aleksandr.dictionaryweb.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.entity.SpanishWord;
+import ru.aleksandr.dictionaryweb.model.EngWordModel;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 import ru.aleksandr.dictionaryweb.service.SpanishDictionaryService;
 import ru.aleksandr.dictionaryweb.util.EngRuMessageFormatter;
@@ -35,9 +35,9 @@ public class MainController {
 
     @GetMapping
     public String showMainMenu(Model model) {
-        List<EnglishWord> wordList = englishDictionaryService.showAll();
-        List<String> valuesToShow = engRuMessageFormatter.listToListMessageFormatter(wordList);
-        model.addAttribute("allValuesFromDictionary", valuesToShow);
+        List<EngWordModel> wordList = englishDictionaryService.showAll();
+        model.addAttribute("allValuesFromDictionary", wordList);
+
         List<SpanishWord> secondWordList = spanishDictionaryService.showAll();
         List<String> secondValuesToShow = spanishRuMessageFormatter.listToListMessageFormatter(secondWordList);
         model.addAttribute("allSpanishValuesFromDictionary", secondValuesToShow);
@@ -94,16 +94,18 @@ public class MainController {
     private void searchInEngRuDict(String key, String value, RedirectAttributes redirectAttributes) {
         if (key != null && !key.isEmpty()) {
             try {
-                EnglishWord englishWord = englishDictionaryService.showByKey(key);
-                StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(List.of(englishWord));
-                redirectAttributes.addFlashAttribute("message", sb);
+                EngWordModel englishWord = englishDictionaryService.showByKey(key);
+                redirectAttributes.addFlashAttribute("message", englishWord.toString());
             } catch (Exception e) {
                 log.warn(e + " in / post mapping because of not correct key");
                 redirectAttributes.addFlashAttribute("message", "Такого ключа не существует");
             }
         } else if (value != null && !value.isEmpty()) {
-            List<EnglishWord> englishWordList = englishDictionaryService.showByValue(value);
-            StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(englishWordList);
+            List<EngWordModel> englishWordList = englishDictionaryService.showByValue(value);
+            StringBuffer sb = new StringBuffer();
+            for (EngWordModel ewm : englishWordList) {
+                sb.append(ewm.toString() + " ");
+            }
             redirectAttributes.addFlashAttribute("message", sb);
         }
     }
@@ -128,8 +130,8 @@ public class MainController {
     private void searchInBothDicts(String key, String value, RedirectAttributes redirectAttributes) {
         if (key != null && !key.isEmpty()) {
             try {
-                EnglishWord englishWord = englishDictionaryService.showByKey(key);
-                StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(List.of(englishWord));
+                EngWordModel englishWord = englishDictionaryService.showByKey(key);
+                StringBuffer sb = new StringBuffer().append(englishWord);
                 SpanishWord spanishWord = spanishDictionaryService.showByKey(key);
                 sb.append(spanishRuMessageFormatter.listToStringMessageFormatter(List.of(spanishWord)));
                 redirectAttributes.addFlashAttribute("message", sb);
@@ -139,8 +141,8 @@ public class MainController {
                         "По такому ключу ничего не найдено, попробуйте еще раз");
             }
         } else if (value != null && !value.isEmpty()) {
-            List<EnglishWord> englishWordList = englishDictionaryService.showByValue(value);
-            StringBuffer sb = engRuMessageFormatter.listToStringMessageFormatter(englishWordList);
+            List<EngWordModel> englishWordList = englishDictionaryService.showByValue(value);
+            StringBuffer sb = new StringBuffer().append(englishWordList);
             List<SpanishWord> spanishWordList = spanishDictionaryService.showByValue(value);
             sb.append(spanishRuMessageFormatter.listToStringMessageFormatter(spanishWordList));
             redirectAttributes.addFlashAttribute("message", sb);
