@@ -5,12 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ru.aleksandr.dictionaryweb.entity.SpanishWord;
 import ru.aleksandr.dictionaryweb.model.EngWordModel;
+import ru.aleksandr.dictionaryweb.model.SpainWordModel;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 import ru.aleksandr.dictionaryweb.service.SpanishDictionaryService;
-import ru.aleksandr.dictionaryweb.util.EngRuMessageFormatter;
-import ru.aleksandr.dictionaryweb.util.SpanishRuMessageFormatter;
 
 import java.util.List;
 
@@ -20,17 +18,11 @@ import java.util.List;
 public class MainController {
     private final EnglishDictionaryService englishDictionaryService;
     private final SpanishDictionaryService spanishDictionaryService;
-    private final EngRuMessageFormatter engRuMessageFormatter;
-    private final SpanishRuMessageFormatter spanishRuMessageFormatter;
 
     public MainController(EnglishDictionaryService englishDictionaryService,
-                          SpanishDictionaryService spanishDictionaryService,
-                          EngRuMessageFormatter engRuMessageFormatter,
-                          SpanishRuMessageFormatter spanishRuMessageFormatter) {
+                          SpanishDictionaryService spanishDictionaryService) {
         this.englishDictionaryService = englishDictionaryService;
         this.spanishDictionaryService = spanishDictionaryService;
-        this.engRuMessageFormatter = engRuMessageFormatter;
-        this.spanishRuMessageFormatter = spanishRuMessageFormatter;
     }
 
     @GetMapping
@@ -38,9 +30,8 @@ public class MainController {
         List<EngWordModel> wordList = englishDictionaryService.showAll();
         model.addAttribute("allValuesFromDictionary", wordList);
 
-        List<SpanishWord> secondWordList = spanishDictionaryService.showAll();
-        List<String> secondValuesToShow = spanishRuMessageFormatter.listToListMessageFormatter(secondWordList);
-        model.addAttribute("allSpanishValuesFromDictionary", secondValuesToShow);
+        List<SpainWordModel> secondWordList = spanishDictionaryService.showAll();
+        model.addAttribute("allSpanishValuesFromDictionary", secondWordList);
         return "main";
     }
 
@@ -68,7 +59,6 @@ public class MainController {
                              @RequestParam(name = "deleteButtonEng", required = false) String deleteButton,
                              @RequestParam(name = "updateButtonEng", required = false) String updateButton,
                              @RequestParam(name = "deleteButtonSpain", required = false) String deleteButtonSp,
-                             @RequestParam(name = "updateButtonSpain", required = false) String updateButtonSp,
                              RedirectAttributes redirectAttributes) {
 
         if (deleteButton != null) {
@@ -104,7 +94,7 @@ public class MainController {
             List<EngWordModel> englishWordList = englishDictionaryService.showByValue(value);
             StringBuffer sb = new StringBuffer();
             for (EngWordModel ewm : englishWordList) {
-                sb.append(ewm.toString() + " ");
+                sb.append(ewm + " ");
             }
             redirectAttributes.addFlashAttribute("message", sb);
         }
@@ -113,39 +103,68 @@ public class MainController {
     private void searchInSpainRuDict(String key, String value, RedirectAttributes redirectAttributes) {
         if (key != null && !key.isEmpty()) {
             try {
-                SpanishWord spanishWord = spanishDictionaryService.showByKey(key);
-                StringBuffer sb = spanishRuMessageFormatter.listToStringMessageFormatter(List.of(spanishWord));
-                redirectAttributes.addFlashAttribute("message", sb);
+                SpainWordModel spanishWord = spanishDictionaryService.showByKey(key);
+                redirectAttributes.addFlashAttribute("message", spanishWord.toString());
             } catch (Exception e) {
                 log.warn(e + " in / post mapping because of not correct key");
                 redirectAttributes.addFlashAttribute("message", "Такого ключа не существует");
             }
         } else if (value != null && !value.isEmpty()) {
-            List<SpanishWord> spanisWordList = spanishDictionaryService.showByValue(value);
-            StringBuffer sb = spanishRuMessageFormatter.listToStringMessageFormatter(spanisWordList);
+            List<SpainWordModel> spanisWordList = spanishDictionaryService.showByValue(value);
+            StringBuffer sb = new StringBuffer();
+            for (SpainWordModel swm : spanisWordList) {
+                sb.append(swm + " ");
+            }
             redirectAttributes.addFlashAttribute("message", sb);
         }
     }
-
     private void searchInBothDicts(String key, String value, RedirectAttributes redirectAttributes) {
         if (key != null && !key.isEmpty()) {
-            try {
-                EngWordModel englishWord = englishDictionaryService.showByKey(key);
-                StringBuffer sb = new StringBuffer().append(englishWord);
-                SpanishWord spanishWord = spanishDictionaryService.showByKey(key);
-                sb.append(spanishRuMessageFormatter.listToStringMessageFormatter(List.of(spanishWord)));
-                redirectAttributes.addFlashAttribute("message", sb);
-            } catch (Exception e) {
-                log.warn(e + " happened while searching in both dicts by key " + key);
-                redirectAttributes.addFlashAttribute("message",
-                        "По такому ключу ничего не найдено, попробуйте еще раз");
+            if (key.matches("[0-9]{5}")) {
+                searchInEngRuDict(key, null, redirectAttributes);
+            } else if (key.matches("[A-Z, a-z]{4}")) {
+                searchInSpainRuDict(key, null, redirectAttributes);
+            } else {
+                redirectAttributes.addFlashAttribute("message", "Такого ключа не существует");
             }
         } else if (value != null && !value.isEmpty()) {
             List<EngWordModel> englishWordList = englishDictionaryService.showByValue(value);
-            StringBuffer sb = new StringBuffer().append(englishWordList);
-            List<SpanishWord> spanishWordList = spanishDictionaryService.showByValue(value);
-            sb.append(spanishRuMessageFormatter.listToStringMessageFormatter(spanishWordList));
-            redirectAttributes.addFlashAttribute("message", sb);
+            StringBuffer sb = new StringBuffer().append(englishWordList).append(" ");
+            List<SpainWordModel> spanishWordList = spanishDictionaryService.showByValue(value);
+            sb.append(spanishWordList);
+            if (englishWordList.size() != 0 || spanishWordList.size() != 0) {
+                redirectAttributes.addFlashAttribute("message", sb);
+            } else {
+                redirectAttributes.addFlashAttribute("message", "Значение не найдено");
+            }
         }
     }
+
+
+   /* private void searchInBothDicts(String key, String value, RedirectAttributes redirectAttributes) {
+        if (key != null && !key.isEmpty()) {
+            StringBuffer sb = new StringBuffer();
+            try {
+                EngWordModel englishWord = englishDictionaryService.showByKey(key);
+                sb.append(englishWord).append(" ");
+            } catch (Exception e) {
+                log.warn(e + " happened while searching in both dicts by key " + key);
+                sb.append("В Англо-русском словаре такого значения нет ");
+            }
+            try {
+                SpainWordModel spanishWord = spanishDictionaryService.showByKey(key);
+                sb.append(spanishWord);
+            } catch (Exception e) {
+                log.warn(e + " happened while searching in both dicts by key " + key);
+                sb.append("В Испано-русском словаре такого значения нет");
+            }
+            redirectAttributes.addFlashAttribute("message", sb);
+        } else if (value != null && !value.isEmpty()) {
+            List<EngWordModel> englishWordList = englishDictionaryService.showByValue(value);
+            StringBuffer sb = new StringBuffer().append(englishWordList).append(" ");
+            List<SpainWordModel> spanishWordList = spanishDictionaryService.showByValue(value);
+            sb.append(spanishWordList);
+            redirectAttributes.addFlashAttribute("message", sb);
+        }
+    }*/
 }

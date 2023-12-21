@@ -22,7 +22,7 @@ public class EnglishDictionaryService {
 
     public void saveString(String word) {
         EngWordModel model = EngWordModel.builder()
-                .word(Integer.valueOf(word.split(" ")[0]))
+                .word(word.split(" ")[0])
                 .translations(word.split(" ")[1])
                 .build();
         engRuRepository.save(model);
@@ -40,16 +40,15 @@ public class EnglishDictionaryService {
         engRuRepository.deleteByKey(deleteWord);
     }
 
-    public void updateById(Long id, String word) {
-        EngWordModel model = EngWordModel.builder()
-                .word(Integer.valueOf(word.split(" ")[0]))
-                .translations(word.split(" ")[1])
-                .build();
-
-        engRuRepository.update(id, model);
-    }
-
     public void deleteById(Long id) {
         engRuRepository.deleteById(id);
+    }
+
+    public void save(EngWordModel model) {
+        engRuRepository.save(model);
+    }
+
+    public void updateById(Long id, EngWordModel model) {
+        engRuRepository.update(id, model);
     }
 }

@@ -2,6 +2,7 @@ package ru.aleksandr.dictionaryweb.model;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
 @Data
@@ -9,9 +10,10 @@ import lombok.*;
 @AllArgsConstructor
 public class EngWordModel {
     private Long id;
-    @Max(value = 99999, message = "Word should be 5 digits in length")
+    @Pattern(regexp = "[0-9]{5}", message =
+            "Word must be 5 digits long")
     @NotNull(message = "Word should not be empty")
-    private Integer word;
+    private String word;
     private String translations;
 
     @Override

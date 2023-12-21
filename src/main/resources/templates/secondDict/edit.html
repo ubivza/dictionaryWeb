@@ -7,10 +7,10 @@
 <body>
 <h1>Редактировать слово в испано-русском словаре :</h1>
 <hr/>
-<form method="post" action="http://localhost:8080/spain-ru-dict/edit">
+<form method="post" action="http://localhost:8080/spain-ru-dict/edit" modelAttribute="editWord">
     <input type="hidden" name="id" th:value="${id}">
-    <h2>Измените слово (Формат 4 латинские буквы) :</h2><input type="text" name="newKeyWord" th:value="${key}"><br>
-    <h2>Измените перевод (Множественные значения через запятую) :</h2><input type="text" name="newValueWord" th:value="${value}"><br>
+    <h2>Измените слово (Формат 4 латинские буквы) :</h2><input type="text" name="word" th:value="${key}"><br>
+    <h2>Измените перевод (Множественные значения через запятую) :</h2><input type="text" name="translations" th:value="${value}"><br>
     <input type="submit" value="Подтвердить изменения">
 </form>
 <br>

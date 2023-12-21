@@ -12,12 +12,15 @@ import java.util.List;
 public class EngWordEntityModelMapper {
 
     public EnglishWord engWordModelToEnglishWord(EngWordModel model) {
+        if (model == null) {
+            return null;
+        }
         EnglishWord englishWord = EnglishWord.builder()
-                        .word(model.getWord()).build();
+                        .word(Integer.valueOf(model.getWord())).build();
         if (model.getId() != null) {
             englishWord.setId(model.getId());
         }
-        englishWord.setWord(model.getWord());
+        englishWord.setWord(Integer.valueOf(model.getWord()));
         if (!model.getTranslations().isBlank()) {
             String[] arr = model.getTranslations().split(", ");
             List<EnglishTranslateWord> list = new ArrayList<>();
@@ -33,13 +36,17 @@ public class EngWordEntityModelMapper {
     }
 
     public EngWordModel englishWordToEngWordModel(EnglishWord entity) {
+        if (entity == null) {
+            return null;
+        }
         EngWordModel engWordModel = EngWordModel.builder().id(entity.getId())
-                .word(entity.getWord()).build();
+                .word(entity.getWord().toString()).build();
 
         if (entity.getEnglishTranslateWords() != null
                 && !entity.getEnglishTranslateWords().isEmpty()) {
             StringBuilder sb = new StringBuilder();
-            for (EnglishTranslateWord englishTranslateWord : entity.getEnglishTranslateWords()) {
+            for (EnglishTranslateWord englishTranslateWord :
+                    entity.getEnglishTranslateWords()) {
                 sb.append(", ");
                 sb.append(englishTranslateWord.getTranslation());
             }

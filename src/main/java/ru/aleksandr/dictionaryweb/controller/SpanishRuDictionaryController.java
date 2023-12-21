@@ -1,13 +1,13 @@
 package ru.aleksandr.dictionaryweb.controller;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.aleksandr.dictionaryweb.model.SpainWordModel;
 import ru.aleksandr.dictionaryweb.service.SpanishDictionaryService;
 
 @Controller
@@ -37,37 +37,56 @@ public class SpanishRuDictionaryController {
     }
 
     @PostMapping("/new")
-    public String newWord(@RequestParam(name = "newKeyWord", required = false) String key,
-                          @RequestParam(name = "newValueWord", required = false) String value,
+    public String newWord(@ModelAttribute("newWord") @Valid SpainWordModel model,
+                          BindingResult bindingResult,
                           RedirectAttributes redirectAttributes) {
-        if (key.isEmpty() || !key.matches("[A-Z, a-z]{4}")) {
-            redirectAttributes.addFlashAttribute("message", "Ключ не может быть пустым или содержать не 4 латинских буквы");
+        if (bindingResult.hasErrors() ||
+                !model.getWord().matches("[A-Z, a-z]{4}")) {
+            redirectAttributes.addFlashAttribute("message",
+                    "Ключ не может быть пустым или содержать не 4 латинских буквы");
             return "redirect:/spain-ru-dict/new";
         }
-        spanishDictionaryService.saveString(key + " " + value);
-        redirectAttributes.addFlashAttribute("message", key + " - " +  value + " удачно добавлены в словарь!");
+        try {
+            spanishDictionaryService.saveString(model);
+            redirectAttributes.addFlashAttribute("message",
+                    model + " удачно добавлены в словарь!");
+        } catch (Exception e) {
+            log.warn(e + " while saving new word " + model);
+            redirectAttributes.addFlashAttribute("message",
+                    "Слово с таким ключом уже существует");
+        }
         return "redirect:/spain-ru-dict/new";
     }
 
     @PostMapping("/edit")
-    public String editExistingWord(@RequestParam(name = "newKeyWord", required = false) String key,
-                                   @RequestParam(name = "newValueWord", required = false) String value,
+    public String editExistingWord(@ModelAttribute("editWord") @Valid SpainWordModel model,
+                                   BindingResult bindingResult,
                                    @RequestParam(name = "id") String id,
                                    RedirectAttributes redirectAttributes) {
-        if (key.isEmpty()) {
+        if (model.getWord().isEmpty()) {
             spanishDictionaryService.deleteById(Long.valueOf(id));
-            redirectAttributes.addFlashAttribute("message", "Слово было удалено");
+            redirectAttributes.addFlashAttribute("message",
+                    "Слово было удалено");
             return "redirect:/";
         }
-        if (!key.matches("[A-Z, a-z]{4}")) {
-            redirectAttributes.addFlashAttribute("key", key);
-            redirectAttributes.addFlashAttribute("value", value);
+        if (!model.getWord().matches("[A-Z, a-z]{4}") ||
+                bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("key", model.getWord());
+            redirectAttributes.addFlashAttribute("value", model.getTranslations());
             redirectAttributes.addFlashAttribute("id", id);
-            redirectAttributes.addFlashAttribute("message", "Ключ не может содержать не 4 латинских буквы");
+            redirectAttributes.addFlashAttribute("message",
+                    "Ключ не может содержать не 4 латинских буквы");
             return "redirect:/spain-ru-dict/edit";
         }
-        spanishDictionaryService.updateById(Long.valueOf(id), key + " " + value);
-        redirectAttributes.addFlashAttribute("message", key + " - " + value + " были изменены");
+        try {
+            spanishDictionaryService.updateById(Long.valueOf(id), model);
+            redirectAttributes.addFlashAttribute("message",
+                    model + " были изменены");
+        } catch (Exception e) {
+            log.warn(e + " while saving new word " + model);
+            redirectAttributes.addFlashAttribute("message",
+                    "Слово с таким ключом уже существует");
+        }
         return "redirect:/";
     }
 }

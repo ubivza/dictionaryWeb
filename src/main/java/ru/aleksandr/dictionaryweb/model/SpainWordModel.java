@@ -18,6 +18,14 @@ public class SpainWordModel {
     @NotBlank(message = "Word shouldnt be empty")
     @Pattern(regexp = "[A-Z, a-z]{4}", message =
             "Word must be 4 characters long and should contain only latin letters")
-    private Spring word;
+    private String word;
     private String translations;
+
+    @Override
+    public String toString() {
+        if (translations == null) {
+            return word + " - перевода пока нет";
+        }
+        return word + " - " + translations;
+    }
 }

@@ -24,7 +24,7 @@ public class EngWordEntityModelMapperTests {
             "without exceptions")
     public void mapModelToEntityHappyMultiple() {
         EngWordModel model = EngWordModel.builder().id(1L)
-                .word(12345).translations("lom, som")
+                .word("12345").translations("lom, som")
                 .build();
 
         EnglishWord englishWord = EnglishWord.builder()
@@ -47,7 +47,7 @@ public class EngWordEntityModelMapperTests {
             "without exceptions")
     public void mapModelToEntityHappyOne() {
         EngWordModel model = EngWordModel.builder().id(1L)
-                .word(12345).translations("lom")
+                .word("12345").translations("lom")
                 .build();
 
         EnglishWord englishWord = EnglishWord.builder().id(1L)
@@ -67,7 +67,7 @@ public class EngWordEntityModelMapperTests {
             "without exceptions")
     public void mapModelToEntityHappyZero() {
         EngWordModel model = EngWordModel.builder()
-                .word(12345).translations("")
+                .word("12345").translations("")
                 .build();
 
         EnglishWord englishWord = EnglishWord.builder()
@@ -94,7 +94,7 @@ public class EngWordEntityModelMapperTests {
         ew.setEnglishTranslateWords(wordList);
 
         EngWordModel ewm = EngWordModel.builder().id(1L)
-                        .word(12345).translations("lom, som")
+                        .word("12345").translations("lom, som")
                         .build();
 
         Assertions.assertEquals(ewm, modelMapper.englishWordToEngWordModel(ew));
@@ -114,7 +114,7 @@ public class EngWordEntityModelMapperTests {
         ew.setEnglishTranslateWords(wordList);
 
         EngWordModel ewm = EngWordModel.builder().id(1L)
-                .word(12345).translations("lom")
+                .word("12345").translations("lom")
                 .build();
 
         Assertions.assertEquals(ewm, modelMapper.englishWordToEngWordModel(ew));
@@ -128,7 +128,7 @@ public class EngWordEntityModelMapperTests {
                 .word(12345).englishTranslateWords(null).build();
 
         EngWordModel ewm = EngWordModel.builder()
-                .word(12345).translations(null).build();
+                .word("12345").translations(null).build();
         Assertions.assertEquals(ewm, modelMapper.englishWordToEngWordModel(ew));
     }
 }

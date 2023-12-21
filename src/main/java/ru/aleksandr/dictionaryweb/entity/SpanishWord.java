@@ -22,8 +22,6 @@ public class SpanishWord {
     private Long id;
 
     @Column(name = "word")
-    @NotBlank(message = "Невозможно создать запись в словаре без иностранного слова")
-    @Size(message = "Слово должно быть 4 латинских символа в длину")
     private String word;
 
     @OneToMany(mappedBy = "spanishWord", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

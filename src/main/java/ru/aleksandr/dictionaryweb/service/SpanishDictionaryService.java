@@ -1,8 +1,10 @@
 package ru.aleksandr.dictionaryweb.service;
 
 import org.springframework.stereotype.Component;
-import ru.aleksandr.dictionaryweb.entity.SpanishTranslateWord;
+import org.springframework.transaction.annotation.Transactional;
 import ru.aleksandr.dictionaryweb.entity.SpanishWord;
+import ru.aleksandr.dictionaryweb.mapper.SpainWordEntityModelMapper;
+import ru.aleksandr.dictionaryweb.model.SpainWordModel;
 import ru.aleksandr.dictionaryweb.repository.SpanishRuRepository;
 
 import java.util.ArrayList;
@@ -13,97 +15,50 @@ import java.util.List;
 public class SpanishDictionaryService {
 
     private final SpanishRuRepository spanishRuRepository;
+    private final SpainWordEntityModelMapper modelMapper;
 
-    public SpanishDictionaryService(SpanishRuRepository spanishRuRepository) {
+    public SpanishDictionaryService(SpanishRuRepository spanishRuRepository, SpainWordEntityModelMapper modelMapper) {
         this.spanishRuRepository = spanishRuRepository;
+        this.modelMapper = modelMapper;
     }
 
-    public SpanishWord showByKey(String key) {
-        return spanishRuRepository.getByKey(key);
+    public SpainWordModel showByKey(String key) {
+        return modelMapper.entityToModel(spanishRuRepository.getByKey(key));
     }
 
-    public void saveString(String word) {
-        String[] arr = word.split(" ", 2);
-        String[] arrWords = new String[0];
-        if (arr[1].contains(", ")) {
-            arrWords = arr[1].split(", ");
-        }
-
-        SpanishWord spanishWord = new SpanishWord();
-        spanishWord.setWord(arr[0]);
-
-        if (arr.length == 2 && !arr[1].isEmpty()) {
-            SpanishTranslateWord spanishTranslateWord = new SpanishTranslateWord();
-
-            spanishTranslateWord.setTranslation(arr[1]);
-            spanishTranslateWord.setSpanishWord(spanishWord);
-            List<SpanishTranslateWord> list = new ArrayList<>();
-            list.add(spanishTranslateWord);
-            spanishWord.setSpanishTranslateWords(list);
-        }
-
-        if (arrWords.length != 0) {
-            List<SpanishTranslateWord> wordList = new ArrayList<>();
-            for (int i = 0; i < arrWords.length; i++) {
-                SpanishTranslateWord spanishTranslateWord = new SpanishTranslateWord();
-
-                spanishTranslateWord.setTranslation(arrWords[i]);
-                spanishTranslateWord.setSpanishWord(spanishWord);
-                wordList.add(spanishTranslateWord);
-            }
-
-            spanishWord.setSpanishTranslateWords(wordList);
-        }
-        spanishRuRepository.save(spanishWord);
+    public void saveString(SpainWordModel model) {
+        spanishRuRepository.save(modelMapper.modelToEntity(model));
     }
 
     public void deleteById(Long id) {
         spanishRuRepository.deleteById(id);
     }
 
-    public void updateById(Long valueOf, String word) {
-        SpanishWord spanishWord = spanishRuRepository.findById(valueOf).get();
+    //как перенести в слой репозитория спринг даты?
+    @Transactional
+    public void updateById(Long id, SpainWordModel word) {
+        SpanishWord spanishWord = modelMapper.modelToEntity(word);
 
-        String[] arr = word.split(" ", 2);
-        String[] arrWords = new String[0];
-        if (arr[1].contains(", ")) {
-            arrWords = arr[1].split(", ");
-        }
+        SpanishWord wordToUpdate = spanishRuRepository.findById(id)
+                .orElse(null);
+        wordToUpdate.setWord(spanishWord.getWord());
+        wordToUpdate.setSpanishTranslateWords(spanishWord.getSpanishTranslateWords());
 
-
-        if (arr.length == 2 && !arr[1].isEmpty()) {
-            SpanishTranslateWord spanishTranslateWord = new SpanishTranslateWord();
-
-            spanishTranslateWord.setTranslation(arr[1]);
-            spanishTranslateWord.setSpanishWord(spanishWord);
-            List<SpanishTranslateWord> list = new ArrayList<>();
-            list.add(spanishTranslateWord);
-            spanishWord.setSpanishTranslateWords(list);
-        }
-
-        if (arrWords.length != 0) {
-            List<SpanishTranslateWord> wordList = new ArrayList<>();
-            for (int i = 0; i < arrWords.length; i++) {
-                SpanishTranslateWord spanishTranslateWord = new SpanishTranslateWord();
-
-                spanishTranslateWord.setTranslation(arrWords[i]);
-                spanishTranslateWord.setSpanishWord(spanishWord);
-                wordList.add(spanishTranslateWord);
-            }
-
-            spanishWord.setSpanishTranslateWords(wordList);
-        }
-        spanishRuRepository.save(spanishWord);
+        spanishRuRepository.save(wordToUpdate);
     }
 
-    public List<SpanishWord> showAll() {
-        List<SpanishWord> list = new ArrayList<>();
-        spanishRuRepository.findAll().forEach(s -> list.add(s));
+    public List<SpainWordModel> showAll() {
+        List<SpainWordModel> list = new ArrayList<>();
+        spanishRuRepository.findAll().forEach(s -> list.add(modelMapper.entityToModel(s)));
         return list;
     }
 
-    public List<SpanishWord> showByValue(String value) {
-        return spanishRuRepository.findByValue(value);
+    public List<SpainWordModel> showByValue(String value) {
+        List<SpainWordModel> list = new ArrayList<>();
+        for (SpanishWord sw : spanishRuRepository.findByValue(value)) {
+            list.add(modelMapper.entityToModel(sw));
+        }
+        return list;
     }
 
     public void deleteByKey(String key) {

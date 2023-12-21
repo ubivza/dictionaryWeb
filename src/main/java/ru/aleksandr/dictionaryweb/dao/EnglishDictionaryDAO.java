@@ -49,6 +49,7 @@ public class EnglishDictionaryDAO implements EngRuRepository {
     public void update(Long id, EngWordModel ewm) {
         EnglishWord englishWord = engWordEntityModelMapper
                 .engWordModelToEnglishWord(ewm);
+
         EnglishWord wordToUpdate = getById(id);
         wordToUpdate.setWord(englishWord.getWord());
         wordToUpdate.setEnglishTranslateWords(

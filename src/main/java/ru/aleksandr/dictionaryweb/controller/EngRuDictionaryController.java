@@ -1,10 +1,13 @@
 package ru.aleksandr.dictionaryweb.controller;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.aleksandr.dictionaryweb.model.EngWordModel;
 import ru.aleksandr.dictionaryweb.service.EnglishDictionaryService;
 
 @Controller
@@ -34,41 +37,54 @@ public class EngRuDictionaryController {
     }
 
     @PostMapping("/new")
-    public String newWord(@RequestParam(name = "newKeyWord", required = false) String key,
-                          @RequestParam(name = "newValueWord", required = false) String value,
+    public String newWord(@ModelAttribute("newWord") @Valid EngWordModel model,
+                          BindingResult bindingResult,
                           RedirectAttributes redirectAttributes) {
-        if (key.isEmpty() || !key.matches("[0-9]{5}")) {
-            redirectAttributes.addFlashAttribute("message", "Ключ не может быть пустым или содержать не 5 цифровых значений");
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("message",
+                    "Ключ не может быть пустым или содержать не 5 цифровых значений");
             return "redirect:/eng-ru-dict/new";
         }
-        englishDictionaryService.saveString(key + " " + value);
-        redirectAttributes.addFlashAttribute("message", key + " - " +  value + " удачно добавлены в словарь!");
+        try {
+            englishDictionaryService.save(model);
+            redirectAttributes.addFlashAttribute("message",
+                    model +
+                    " удачно добавлены в словарь!");
+        } catch (Exception e) {
+            log.warn(e + " while saving new word " + model);
+            redirectAttributes.addFlashAttribute("message",
+                    "Слово с таким ключом уже существует");
+        }
         return "redirect:/eng-ru-dict/new";
     }
 
     @PostMapping("/edit")
-    public String editExistingWord(@RequestParam(name = "newKeyWord", required = false) String key,
-                                   @RequestParam(name = "newValueWord", required = false) String value,
+    public String editExistingWord(@ModelAttribute("editWord") @Valid EngWordModel model,
+                                   BindingResult bindingResult,
                                    @RequestParam(name = "id") String id,
                                    RedirectAttributes redirectAttributes) {
-
-        //попробовать переписать на @ModelAttribute
-
-
-        if (key.isEmpty()) {
+        if (model.getWord().toString().isEmpty()) {
             englishDictionaryService.deleteById(Long.valueOf(id));
-            redirectAttributes.addFlashAttribute("message", "Слово было удалено");
+            redirectAttributes.addFlashAttribute("message",
+                    "Слово было удалено");
             return "redirect:/";
-        }
-        if (!key.matches("[0-9]{5}")) {
-            redirectAttributes.addFlashAttribute("key", key);
-            redirectAttributes.addFlashAttribute("value", value);
+        } else if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("key", "");
+            redirectAttributes.addFlashAttribute("value", model.getTranslations());
             redirectAttributes.addFlashAttribute("id", id);
-            redirectAttributes.addFlashAttribute("message", "Ключ не может содержать не 5 цифровых значений");
+            redirectAttributes.addFlashAttribute("message",
+                    "Ключ не может содержать не 5 цифровых значений");
             return "redirect:/eng-ru-dict/edit";
         }
-        englishDictionaryService.updateById(Long.valueOf(id), key + " " + value);
-        redirectAttributes.addFlashAttribute("message", key + " - " + value + " были изменены");
+        try {
+            englishDictionaryService.updateById(Long.valueOf(id), model);
+            redirectAttributes.addFlashAttribute("message", model +
+                    " были изменены");
+        } catch (Exception e) {
+            log.warn(e + " while saving new word " + model);
+            redirectAttributes.addFlashAttribute("message",
+                    "Слово с таким ключом уже существует");
+        }
         return "redirect:/";
     }
 }

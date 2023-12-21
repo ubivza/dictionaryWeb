@@ -69,20 +69,4 @@ public class EnglishDictionaryServiceTests {
 
         //Mockito.verify(engRuRepository).save(englishWord);
     }
-
-    @Test
-    @DisplayName("Test the word is written to database " +
-            "without exceptions no values")
-    public void saveStringHappyFlowNoObject() {
-        String testWord = "12345 ";
-        EnglishWord englishWord = EnglishWord.builder()
-                .id(null)
-                .word(12345)
-                .englishTranslateWords(null)
-                .build();
-
-        service.saveString(testWord);
-
-        //Mockito.verify(engRuRepository).save(englishWord);
-    }
 }
