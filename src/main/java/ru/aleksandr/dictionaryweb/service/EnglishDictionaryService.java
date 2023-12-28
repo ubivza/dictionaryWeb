@@ -20,13 +20,13 @@ public class EnglishDictionaryService {
         return engRuRepository.getAll();
     }
 
-    public void saveString(String word) {
+    /*public void saveString(String word) {
         EngWordModel model = EngWordModel.builder()
                 .word(word.split(" ")[0])
                 .translations(word.split(" ")[1])
                 .build();
         engRuRepository.save(model);
-    }
+    }*/
 
     public EngWordModel showByKey(String key) {
         return engRuRepository.getByKey(key);

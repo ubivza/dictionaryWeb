@@ -47,7 +47,7 @@ public class SpanishRuDictionaryController {
             return "redirect:/spain-ru-dict/new";
         }
         try {
-            spanishDictionaryService.saveString(model);
+            spanishDictionaryService.save(model);
             redirectAttributes.addFlashAttribute("message",
                     model + " удачно добавлены в словарь!");
         } catch (Exception e) {

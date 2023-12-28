@@ -9,7 +9,6 @@ import ru.aleksandr.dictionaryweb.db.entity.SpanishWord;
 import java.util.List;
 
 @Repository
-@Transactional
 public interface SpanishRuRepository extends JpaRepository<SpanishWord, Long> {
 
 

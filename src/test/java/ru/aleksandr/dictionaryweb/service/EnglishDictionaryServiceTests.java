@@ -43,7 +43,7 @@ public class EnglishDictionaryServiceTests {
                 .build());
 
         englishWord.setEnglishTranslateWords(translates);
-        service.saveString(testWord);
+        //service.saveString(testWord);
 
         //Mockito.verify(engRuRepository).save(englishWord);
     }
@@ -64,7 +64,7 @@ public class EnglishDictionaryServiceTests {
                 .build());
 
         englishWord.setEnglishTranslateWords(translates);
-        service.saveString(testWord);
+        //service.saveString(testWord);
 
         //Mockito.verify(engRuRepository).save(englishWord);
     }
