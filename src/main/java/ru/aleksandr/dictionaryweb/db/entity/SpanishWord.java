@@ -1,4 +1,4 @@
-package ru.aleksandr.dictionaryweb.entity;
+package ru.aleksandr.dictionaryweb.db.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,22 +9,22 @@ import lombok.ToString;
 import java.util.List;
 
 @Entity
-@Table(name = "eng_word")
+@Table(name = "spanish_word")
 @Data
 @Builder
 @AllArgsConstructor
-public class EnglishWord {
+public class SpanishWord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ToString.Exclude
     private Long id;
 
     @Column(name = "word")
-    private Integer word;
+    private String word;
 
-    @OneToMany(mappedBy = "englishWord", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<EnglishTranslateWord> englishTranslateWords;
+    @OneToMany(mappedBy = "spanishWord", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<SpanishTranslateWord> spanishTranslateWords;
 
-    public EnglishWord() {}
+    public SpanishWord() {}
 
 }

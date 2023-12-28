@@ -1,21 +1,21 @@
-package ru.aleksandr.dictionaryweb.dao;
+package ru.aleksandr.dictionaryweb.db.dao;
 
 
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.aleksandr.dictionaryweb.entity.EnglishWord;
+import ru.aleksandr.dictionaryweb.db.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.mapper.EngWordEntityModelMapper;
 import ru.aleksandr.dictionaryweb.model.EngWordModel;
-import ru.aleksandr.dictionaryweb.repository.EngRuRepository;
+import ru.aleksandr.dictionaryweb.db.repository.EngRuRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Repository
 @Slf4j
 public class EnglishDictionaryDAO implements EngRuRepository {
 

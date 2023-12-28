@@ -1,4 +1,4 @@
-package ru.aleksandr.dictionaryweb.entity;
+package ru.aleksandr.dictionaryweb.db.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

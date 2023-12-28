@@ -1,4 +1,4 @@
-package ru.aleksandr.dictionaryweb.repository;
+package ru.aleksandr.dictionaryweb.db.repository;
 
 import ru.aleksandr.dictionaryweb.model.EngWordModel;
 

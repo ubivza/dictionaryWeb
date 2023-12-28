@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
-import ru.aleksandr.dictionaryweb.entity.EnglishWord;
-import ru.aleksandr.dictionaryweb.repository.EngRuRepository;
+import ru.aleksandr.dictionaryweb.db.entity.EnglishTranslateWord;
+import ru.aleksandr.dictionaryweb.db.entity.EnglishWord;
+import ru.aleksandr.dictionaryweb.db.repository.EngRuRepository;
 
 import java.util.ArrayList;
 import java.util.List;

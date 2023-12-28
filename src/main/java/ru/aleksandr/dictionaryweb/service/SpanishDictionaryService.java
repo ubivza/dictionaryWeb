@@ -2,10 +2,10 @@ package ru.aleksandr.dictionaryweb.service;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import ru.aleksandr.dictionaryweb.entity.SpanishWord;
+import ru.aleksandr.dictionaryweb.db.entity.SpanishWord;
 import ru.aleksandr.dictionaryweb.mapper.SpainWordEntityModelMapper;
 import ru.aleksandr.dictionaryweb.model.SpainWordModel;
-import ru.aleksandr.dictionaryweb.repository.SpanishRuRepository;
+import ru.aleksandr.dictionaryweb.db.repository.SpanishRuRepository;
 
 import java.util.ArrayList;
 import java.util.List;

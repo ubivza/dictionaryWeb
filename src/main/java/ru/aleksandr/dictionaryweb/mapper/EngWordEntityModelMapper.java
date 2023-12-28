@@ -1,8 +1,8 @@
 package ru.aleksandr.dictionaryweb.mapper;
 
 import org.mapstruct.Mapper;
-import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
-import ru.aleksandr.dictionaryweb.entity.EnglishWord;
+import ru.aleksandr.dictionaryweb.db.entity.EnglishTranslateWord;
+import ru.aleksandr.dictionaryweb.db.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.model.EngWordModel;
 
 import java.util.ArrayList;

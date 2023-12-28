@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.aleksandr.dictionaryweb.entity.EnglishTranslateWord;
-import ru.aleksandr.dictionaryweb.entity.EnglishWord;
+import ru.aleksandr.dictionaryweb.db.entity.EnglishTranslateWord;
+import ru.aleksandr.dictionaryweb.db.entity.EnglishWord;
 import ru.aleksandr.dictionaryweb.model.EngWordModel;
 
 import java.util.ArrayList;

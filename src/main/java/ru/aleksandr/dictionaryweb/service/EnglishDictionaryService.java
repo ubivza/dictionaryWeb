@@ -2,7 +2,7 @@ package ru.aleksandr.dictionaryweb.service;
 
 import org.springframework.stereotype.Service;
 import ru.aleksandr.dictionaryweb.model.EngWordModel;
-import ru.aleksandr.dictionaryweb.repository.EngRuRepository;
+import ru.aleksandr.dictionaryweb.db.repository.EngRuRepository;
 
 import java.util.List;
 
